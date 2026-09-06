@@ -263,8 +263,10 @@
     color:var(--rust);border:1px solid var(--rust);
     border-radius:999px;padding:2px 10px;white-space:nowrap;margin-top:2px;
   }
-  .scheme-card .row{margin-top:9px;font-size:15px;}
+  .scheme-card .row{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:15px;}
+  .scheme-card .row:first-of-type{border-top:none;padding-top:0;}
   .scheme-card .row .k{color:var(--leaf);font-weight:700;}
+  .scheme-card .row .k.elig{color:var(--rust);}
   .scheme-card .row .k.where{color:var(--ink-soft);}
   .scheme-card .row.link-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
   .scheme-card .row.link-row .k{color:var(--marigold-deep);}
@@ -565,24 +567,24 @@ const SCHEMES = [
    contact:{hi:'हेल्थ एंड वेलनेस सेंटर (उप स्वास्थ्य केंद्र)', en:'Health & Wellness Centre (sub-health centre)'}},
 
   // ---- CHILD NUTRITION / ICDS ----
-  {cat:'child', personas:['child','preg'], level:0, url:'https://icds-wcd.nic.in/',
+  {cat:'child', personas:['child','preg'], level:0, url:'https://wcd.gov.in/',
    name:{hi:'पूरक पोषाहार कार्यक्रम (ICDS)', en:'Supplementary Nutrition Programme (ICDS)'},
    benefit:{hi:'गर्भवती/धात्री महिलाओं व 0–5 वर्ष के बच्चों को नियमित पोषाहार।', en:'Regular take-home ration for pregnant/lactating women and children 0–5.'},
    eligibility:{hi:'आंगनवाड़ी केंद्र पर पंजीकृत सभी पात्र लाभार्थी।', en:'All eligible beneficiaries registered at an Anganwadi centre.'},
    contact:{hi:'आंगनवाड़ी केंद्र (AWC)', en:'Anganwadi Centre (AWC)'}},
-  {cat:'child', personas:['child'], level:0, url:'https://icds-wcd.nic.in/',
+  {cat:'child', personas:['child'], level:0, url:'https://wcd.gov.in/',
    name:{hi:'गंभीर कुपोषित बच्चों हेतु पोषण पुनर्वास केंद्र (NRC)', en:'Nutrition Rehabilitation Centre (NRC) for severely malnourished children'},
    benefit:{hi:'SAM (अति गंभीर) व MAM (मध्यम) कुपोषित बच्चों का निःशुल्क भर्ती कर पोषण उपचार।', en:'Free admission and nutrition treatment for SAM/MAM children.'},
    eligibility:{hi:'5 वर्ष से कम आयु के कुपोषित (कम वज़न/कम ऊंचाई) बच्चे।', en:'Malnourished (low weight/height) children under 5 years.'},
    contact:{hi:'आंगनवाड़ी कार्यकर्ता / CHC पर NRC', en:'Anganwadi worker / NRC at CHC'}},
-  {cat:'child', personas:['citizen'], level:1, url:'https://icds-wcd.nic.in/',
+  {cat:'child', personas:['citizen'], level:1, url:'https://wcd.gov.in/',
    name:{hi:'आंगनवाड़ी भवन निर्माण योजना', en:'Anganwadi building construction scheme'},
    benefit:{hi:'किराए के भवन की बजाय पक्के विभागीय भवन में आंगनवाड़ी केंद्र संचालन।', en:'Anganwadi runs from a permanent departmental building instead of rented space.'},
    eligibility:{hi:'भवन-विहीन या किराए के भवन में चल रहे आंगनवाड़ी केंद्र।', en:'Anganwadi centres without a building, or running from rented premises.'},
    contact:{hi:'बाल विकास परियोजना अधिकारी (CDPO)', en:'Child Development Project Officer (CDPO)'}},
 
   // ---- EDUCATION ----
-  {cat:'education', personas:['student'], level:1, url:'https://basicshiksha.up.gov.in/',
+  {cat:'education', personas:['student'], level:1, url:'https://basiceducation.up.gov.in/',
    name:{hi:'स्कूल चलो अभियान', en:'School Chalo Abhiyan'},
    benefit:{hi:'नामांकन बढ़ाना व स्कूल से बाहर बच्चों को वापस स्कूल लाना।', en:'Increases enrolment and brings out-of-school children back to school.'},
    eligibility:{hi:'6–14 वर्ष के सभी बच्चे।', en:'All children aged 6–14.'},
@@ -597,7 +599,7 @@ const SCHEMES = [
    benefit:{hi:'कक्षा 3, 5 व 8 में गणित व भाषा में बुनियादी दक्षता सुनिश्चित करना।', en:'Ensures basic maths and language proficiency in classes 3, 5 and 8.'},
    eligibility:{hi:'कक्षा 1 से 8 तक के सभी परिषदीय विद्यालय के छात्र।', en:'All government-school students in classes 1–8.'},
    contact:{hi:'विद्यालय शिक्षक / ARP प्रेरणा', en:'School teacher / ARP Prerna'}},
-  {cat:'education', personas:['student'], level:0, url:'https://basicshiksha.up.gov.in/',
+  {cat:'education', personas:['student'], level:0, url:'https://basiceducation.up.gov.in/',
    name:{hi:'निःशुल्क पाठ्यपुस्तक वितरण (RTE)', en:'Free textbook distribution (RTE)'},
    benefit:{hi:'सत्र प्रारंभ होने के एक माह के भीतर सभी छात्रों को मुफ्त किताबें।', en:'Free textbooks to all students within a month of the session starting.'},
    eligibility:{hi:'परिषदीय विद्यालयों में पंजीकृत सभी छात्र।', en:'All students enrolled in government schools.'},
@@ -614,7 +616,7 @@ const SCHEMES = [
    benefit:{hi:'खरीफ व रबी दोनों फसलों का कम प्रीमियम पर बीमा — प्राकृतिक आपदा से सुरक्षा।', en:'Low-premium insurance for both Kharif and Rabi crops — protection against natural calamity.'},
    eligibility:{hi:'अधिसूचित फसल बोने वाले सभी किसान (बटाईदार सहित)।', en:'All farmers (including sharecroppers) growing notified crops.'},
    contact:{hi:'कृषि विभाग / बैंक शाखा / CSC', en:'Agriculture department / bank branch / CSC'}},
-  {cat:'agri', personas:['farmer'], level:0, url:'https://agricoop.nic.in/',
+  {cat:'agri', personas:['farmer'], level:0, url:'https://agriwelfare.gov.in/',
    name:{hi:'किसान क्रेडिट कार्ड — ब्याज अनुदान योजना (KCC)', en:'Kisan Credit Card — Interest Subvention Scheme (KCC)'},
    benefit:{hi:'खेती हेतु सस्ती ब्याज दर पर ऋण (समय पर भुगतान करने पर अतिरिक्त छूट)।', en:'Low-interest farm loans, with extra rebate for timely repayment.'},
    eligibility:{hi:'भूमि रिकॉर्ड धारक सभी किसान।', en:'All farmers with land records.'},
@@ -646,7 +648,7 @@ const SCHEMES = [
    benefit:{hi:'गोवंश व भैंसों का खुरपका-मुँहपका रोग (FMD) से मुफ्त टीकाकरण।', en:'Free vaccination of cattle/buffalo against Foot-and-Mouth Disease (FMD).'},
    eligibility:{hi:'सभी पशुपालक — गाय/भैंस रखने वाले।', en:'All livestock owners keeping cows/buffaloes.'},
    contact:{hi:'पशु चिकित्सा अधिकारी / नज़दीकी पशु चिकित्सालय', en:'Veterinary officer / nearest veterinary hospital'}},
-  {cat:'animal', personas:['animal'], level:2, url:'https://dahd.nic.in/',
+  {cat:'animal', personas:['animal'], level:2, url:'https://dahd.gov.in/',
    name:{hi:'राष्ट्रीय कृत्रिम गर्भाधान कार्यक्रम / राष्ट्रीय गोकुल मिशन', en:'National Artificial Insemination Programme / Rashtriya Gokul Mission'},
    benefit:{hi:'उन्नत नस्ल हेतु निःशुल्क कृत्रिम गर्भाधान (AI) सेवा।', en:'Free artificial insemination (AI) service for breed improvement.'},
    eligibility:{hi:'प्रजनन योग्य पशु रखने वाले पशुपालक।', en:'Owners of breedable livestock.'},
@@ -695,7 +697,7 @@ const SCHEMES = [
    contact:{hi:'BC सखी / ग्राम पंचायत सचिवालय', en:'BC Sakhi / Gram Panchayat secretariat'}},
 
   // ---- SKILL & EMPLOYMENT ----
-  {cat:'skill', personas:['youth'], level:2, url:'https://www.pmkvyofficial.org/',
+  {cat:'skill', personas:['youth'], level:2, url:'https://www.skillindiadigital.gov.in/',
    name:{hi:'उत्तर प्रदेश कौशल विकास मिशन (UPSDM) / PMKVY', en:'UP Skill Development Mission (UPSDM) / PMKVY'},
    benefit:{hi:'निःशुल्क कौशल प्रशिक्षण व सरकार-मान्य प्रमाणपत्र।', en:'Free skill training and a government-recognised certificate.'},
    eligibility:{hi:'15–29 वर्ष आयु वर्ग के युवा।', en:'Youth aged 15–29.'},
@@ -739,7 +741,7 @@ const SCHEMES = [
    benefit:{hi:'नया बिजली कनेक्शन आसान व त्वरित प्रक्रिया से।', en:'New electricity connection through a fast, simple process.'},
    eligibility:{hi:'बिना कनेक्शन वाले सभी घर।', en:'Any household without an electricity connection.'},
    contact:{hi:'विद्युत वितरण खंड कार्यालय', en:'Electricity distribution division office'}},
-  {cat:'infra', personas:['citizen'], level:0, url:'https://ejalshakti.gov.in/',
+  {cat:'infra', personas:['citizen'], level:0, url:'https://jaljeevanmission.gov.in/',
    name:{hi:'जल जीवन मिशन — हर घर नल', en:'Jal Jeevan Mission — tap water for every home'},
    benefit:{hi:'हर घर में नल से पर्याप्त मात्रा (40 लीटर प्रति व्यक्ति प्रतिदिन) शुद्ध पेयजल।', en:'Piped safe drinking water — 40 litres/person/day — to every home.'},
    eligibility:{hi:'सभी ग्रामीण परिवार।', en:'All rural households.'},
@@ -754,7 +756,7 @@ const SCHEMES = [
    benefit:{hi:'एक ही स्थान पर आधार, प्रमाणपत्र, बिल भुगतान, बैंकिंग जैसी अनेक सेवाएं।', en:'Aadhaar, certificates, bill payment, banking and more — all at one place.'},
    eligibility:{hi:'सभी नागरिक — हर ग्राम पंचायत में उपलब्ध।', en:'All citizens — available in every Gram Panchayat.'},
    contact:{hi:'नज़दीकी जन सेवा केंद्र (CSC / VLE)', en:'Nearest Common Service Centre (CSC / VLE)'}},
-  {cat:'infra', personas:['citizen'], level:1, url:'https://panchayatiraj.up.gov.in/',
+  {cat:'infra', personas:['citizen'], level:1, url:'https://panchayatiraj.up.nic.in/',
    name:{hi:'वित्त आयोग निधि — पंचायत इंटरनेट कनेक्टिविटी', en:'Finance Commission Fund — Panchayat internet connectivity'},
    benefit:{hi:'ग्राम सचिवालय में इंटरनेट सुविधा — ऑनलाइन सेवाएं तेज़ी से।', en:'Internet facility at the Gram Sachivalay for faster online services.'},
    eligibility:{hi:'सभी ग्राम पंचायत सचिवालय।', en:'All Gram Panchayat secretariats.'},
@@ -983,7 +985,7 @@ function render(){
         <span class="level">${LEVEL[LANG][s.level]}</span>
       </div>
       <div class="row"><span class="k">${s_.benefitLabel} — </span>${s.benefit[LANG]}</div>
-      <div class="row"><span class="k">${s_.eligLabel} — </span>${s.eligibility[LANG]}</div>
+      <div class="row"><span class="k elig">${s_.eligLabel} — </span>${s.eligibility[LANG]}</div>
       <div class="row"><span class="k where">${s_.contactLabel} — </span>${s.contact[LANG]}</div>
       <div class="row link-row"><span class="k">${s_.officialSite} — </span><a href="${s.url}" target="_blank" rel="noopener noreferrer">${domainOf(s.url)} ${ICONS.external}</a></div>
       <div class="cat-tag">${catLabel}</div>
