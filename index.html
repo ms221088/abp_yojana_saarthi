@@ -107,6 +107,53 @@
   }
   .hero .place b{color:#EFE3C4;font-weight:600;}
 
+  .emergency-toggle{
+    margin-top:18px;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    background:rgba(255,255,255,.06);border:1.5px solid #E77E7E;border-radius:8px;
+    padding:9px 14px;cursor:pointer;width:100%;text-align:right;
+    font-family:'Hind',sans-serif;
+  }
+  .emergency-toggle .et-main{font-size:14.5px;font-weight:700;color:#FF9B9B;}
+  .emergency-toggle .et-hint{font-size:11.5px;color:#C9D2E4;font-weight:400;}
+  .emergency-toggle .et-chevron{margin-inline-start:auto;color:#FF9B9B;transition:transform .15s ease;}
+  .emergency-toggle[aria-expanded="true"] .et-chevron{transform:rotate(180deg);}
+  .emergency-toggle:hover{background:rgba(255,255,255,.12);}
+  #emergencyStrip{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+  #emergencyStrip[hidden]{display:none;}
+  .ecard{
+    display:flex;flex-direction:column;align-items:center;gap:3px;min-width:76px;
+    background:rgba(255,255,255,.08);border:1.5px solid #E77E7E;border-radius:6px;
+    padding:8px 10px;text-decoration:none;
+  }
+  .ecard .eicon{font-size:26px;line-height:1;}
+  .ecard .enum{font-size:17px;font-weight:800;color:#FF9B9B;}
+  .ecard .elabel{font-size:10.5px;color:#EAEFF7;text-align:center;line-height:1.2;}
+  .ecard:hover{background:rgba(255,255,255,.16);}
+
+  .ecard.accent-pink{background:rgba(245,169,184,.18);border-color:#F5A9B8;}
+  .ecard.accent-pink .enum{color:#FFD1DC;}
+
+  .ecard.accent-saffron{background:rgba(222,159,48,.18);border-color:var(--marigold);}
+  .ecard.accent-saffron .enum{color:#FFD48A;}
+
+  .ecard.sos{background:#B4231F;border-color:#8E1A17;}
+  .ecard.sos .eicon.sos-badge{
+    font-size:15px;font-weight:900;letter-spacing:.5px;color:#FFD400;
+    background:transparent;line-height:1.1;
+  }
+  .ecard.sos .enum{color:#FFD400;}
+  .ecard.sos .elabel{color:#FFE9C7;}
+  .ecard.sos:hover{background:#C22A26;}
+
+  .voice-btn{
+    margin-top:10px;font-size:13.5px;font-weight:600;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--marigold-deep);border-radius:999px;
+    padding:5px 13px;cursor:pointer;font-family:'Hind',sans-serif;
+  }
+  .voice-btn:hover{background:#F0E6CC;}
+  .voice-btn[data-speaking="true"]{background:var(--marigold);border-color:var(--marigold-deep);}
+
   /* ---------- Search ---------- */
   .search-band{
     background:var(--paper-2);
@@ -172,8 +219,8 @@
   .chip .icon{
     display:inline-flex;align-items:center;justify-content:flex-start;
     gap:1px;flex:none;
-    font-size:27px;line-height:1;
-    min-height:36px;
+    font-size:23px;line-height:1;
+    min-height:32px;
   }
   .chip .label{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.25;}
   .chip:hover{border-color:var(--marigold-deep);}
@@ -337,6 +384,12 @@
       <span><span data-str="district">जनपद</span> — <b>बदायूँ</b></span>
       <span><span data-str="division">मंडल</span> — <b>बरेली</b></span>
     </div>
+    <button type="button" id="emergencyToggle" class="emergency-toggle" aria-expanded="false" aria-controls="emergencyStrip">
+      <span class="et-main">🚨 <span data-str="emergencyHeading">आपातकालीन नंबर</span></span>
+      <span class="et-hint" data-str="emergencyHint">(खोलने के लिए टैप/क्लिक करें)</span>
+      <span class="et-chevron" aria-hidden="true">▾</span>
+    </button>
+    <div id="emergencyStrip" hidden></div>
   </div>
 </header>
 
@@ -411,16 +464,16 @@
 const ICONS = {
   // pregnant + lactating mother, layered: pregnant emoji larger/lower, nursing-mother emoji smaller/raised alongside it
   // pregnant woman and nursing mother shown equal size; an explicit baby emoji added since the baby inside the nursing glyph alone is too small to read
-  pregnant: '<span style="display:inline-flex;align-items:center;gap:2px;"><span style="font-size:1.3em;">🤰🏽</span><span style="font-size:1.3em;">🤱🏽</span><span style="font-size:1em;margin-left:-2px;">👶🏽</span></span>',
+  pregnant: '<span style="display:inline-flex;align-items:center;gap:1px;"><span style="font-size:1.15em;">🤰🏽</span><span style="font-size:1.15em;">🤱🏽</span><span style="font-size:0.75em;margin-left:-3px;">👶🏽</span></span>',
   child: '🧒🏽', // child
   tb: '🫁', // lungs
   // male farmer (more common locally) + wheat crop + tractor — note: Unicode has no traditional hal/plough glyph, tractor is the nearest tilling-equipment emoji available
   farmer: '👨🏽‍🌾🌾🚜',
-  animal: '👨🏽‍🌾🐄🐃🐐', // herder + cow + buffalo + goat
+  animal: '👨🏽‍🌾🐃🐐', // herder + buffalo + goat
   student: '👨‍👩‍👧🎒', // family + school bag
   youth: '👨🏽‍💼👩🏽‍💼', // male + female, both with briefcase (job-seeking)
   // group of women seated around a round table, top-down view (self-help-group meeting)
-  shg: `<svg width="34" height="34" viewBox="0 0 24 24">
+  shg: `<svg width="30" height="30" viewBox="0 0 24 24">
     <circle cx="12" cy="12" r="6.2" fill="#C9A063"/>
     <circle cx="12" cy="12" r="6.2" fill="none" stroke="#A9803D" stroke-width=".6"/>
     <circle cx="12" cy="3.6" r="2.5" fill="#E8752C"/>
@@ -432,7 +485,7 @@ const ICONS = {
   house: '🏚️', // run-down house (kuchha / needs repair)
   // half-blue/half-pink split person (the icon commonly seen for inclusive signage) shown together with the ⚧ symbol, for recognisability where the symbol alone may not be understood
   transgender: `<span style="display:inline-flex;align-items:center;gap:2px;">
-    <svg width="30" height="30" viewBox="0 0 24 24">
+    <svg width="26" height="26" viewBox="0 0 24 24">
       <defs>
         <clipPath id="tgL"><rect x="0" y="0" width="12" height="24"/></clipPath>
         <clipPath id="tgR"><rect x="12" y="0" width="12" height="24"/></clipPath>
@@ -440,12 +493,16 @@ const ICONS = {
       <g clip-path="url(#tgL)"><circle cx="12" cy="8" r="5" fill="#5BCEFA"/><path d="M3 22c0-6.2 3.8-9.5 9-9.5s9 3.3 9 9.5" fill="#5BCEFA"/></g>
       <g clip-path="url(#tgR)"><circle cx="12" cy="8" r="5" fill="#F5A9B8"/><path d="M3 22c0-6.2 3.8-9.5 9-9.5s9 3.3 9 9.5" fill="#F5A9B8"/></g>
     </svg>
-    <span style="font-size:23px;">⚧️</span>
+    <span style="font-size:20px;">⚧️</span>
   </span>`,
-  // full-body neutral pictogram (restroom-sign style), enlarged and given a slightly wider stance so it reads clearly as a full standing figure — distinct from the child's face-only emoji, no gender cues
-  citizen: `<svg width="34" height="34" viewBox="0 0 24 24"><circle cx="12" cy="4.4" r="3.1" fill="#5B6B7F"/><path d="M8.2 9c-1.7 0-2.9 1.3-2.9 3.2v3.3h2.1v6h3v-5.2h1.2v5.2h3v-6h2.1v-3.3c0-1.9-1.2-3.2-2.9-3.2Z" fill="#5B6B7F"/></svg>`,
+  // full-body neutral pictogram (restroom-sign style) — clearly a full standing figure, distinct from the child's face-only emoji, no gender cues
+  citizen: `<svg width="26" height="26" viewBox="0 0 24 24"><circle cx="12" cy="4.6" r="3" fill="#5B6B7F"/><path d="M8.5 9c-1.5 0-2.5 1.2-2.5 3v3h2v6h3v-5h1.5v5h3v-6h2v-3c0-1.8-1-3-2.5-3Z" fill="#5B6B7F"/></svg>`,
   external: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>`,
 };
+// senior citizen: person with a walking cane
+ICONS.senior = `<svg width="26" height="26" viewBox="0 0 24 24"><circle cx="10" cy="5.5" r="3.3" fill="#5B6B7F"/><path d="M6.7 10c-1.5 0-2.5 1.2-2.5 3v3h2v6h3v-5h1.5v5h3v-6h1.3" fill="none" stroke="#5B6B7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 10c-1.5 0-2.5 1.2-2.5 3v3h2v6h3v-5h1.5v5h3v-6h2v-3c0-1.8-1-3-2.5-3Z" fill="#8A6D53" opacity="0"/><path d="M17 11v11" stroke="#B8860B" stroke-width="1.6" stroke-linecap="round"/><path d="M17 11c1 0 1.6.6 1.6 1.6" stroke="#B8860B" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`;
+// divyangjan: person using a wheelchair — the internationally recognised accessibility pictogram
+ICONS.divyang = `<svg width="26" height="26" viewBox="0 0 24 24"><circle cx="13" cy="5" r="2.4" fill="#5B6B7F"/><path d="M12 8v5l4 2" stroke="#5B6B7F" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13H8" stroke="#5B6B7F" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="17.5" r="4.3" fill="none" stroke="#4A90D9" stroke-width="1.8"/><path d="M10 13.2v4.3l3.3 2.6" stroke="#4A90D9" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 20.5h2.3" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round"/></svg>`;
 const CAT_ICONS = {
   health: ICONS.pregnant, child: ICONS.child, education: ICONS.student,
   agri: ICONS.farmer, animal: ICONS.animal, finance: ICONS.shg,
@@ -459,6 +516,8 @@ const STR = {
     skip:'मुख्य सामग्री पर जाएँ', eyebrow:'आकांक्षी ब्लॉक कार्यक्रम · Aspirational Blocks Programme',
     title:'योजना सारथी', heroSub:'बताइए आप कौन हैं — हम आपको बताएँगे कि आपके लिए कौन-सी सरकारी योजना उपलब्ध है, पात्रता क्या है और कहाँ संपर्क करें।',
     block:'ब्लॉक', district:'जनपद', division:'मंडल',
+    emergencyHeading:'आपातकालीन नंबर',
+    emergencyHint:'(खोलने के लिए टैप/क्लिक करें)',
     searchLabel:'योजना खोजें', searchPlaceholder:"योजना, बीमारी, फसल या ज़रूरत खोजें — जैसे 'गर्भवती', 'शौचालय', 'बीमा'",
     step1:'चरण 1', step1Title:'आप कौन हैं?', step1Help:'अपनी स्थिति चुनें — नीचे केवल उससे जुड़ी योजनाएं दिखेंगी। न चुनें तो सभी योजनाएं दिखेंगी।',
     step2:'चरण 2', step2Title:'विभाग अनुसार भी देख सकते हैं',
@@ -466,6 +525,7 @@ const STR = {
     resultsFound:'योजनाएं मिलीं', emptyTitle:'कोई योजना नहीं मिली',
     emptyBody:'खोज शब्द बदलकर देखें, या अपनी नज़दीकी आंगनवाड़ी / आशा कार्यकर्ता / जन सेवा केंद्र (CSC) से संपर्क करें।',
     benefitLabel:'क्या मिलता है', eligLabel:'पात्रता', contactLabel:'कहाँ संपर्क करें', officialSite:'आधिकारिक वेबसाइट',
+    listen:'सुनें', stopListening:'रोकें',
     clearAllFilters:'सभी फ़िल्टर हटाएँ', removeFilter:'हटाएँ', tryClearing:'शायद इनमें से कोई फ़िल्टर हटाकर देखें —',
     filterPersona:'व्यक्ति', filterCat:'विभाग', filterSearch:'खोज',
     footerFellow:'मुख्यमंत्री शोधार्थी (CM Fellow) — सालारपुर, बदायूँ',
@@ -474,12 +534,15 @@ const STR = {
     disclaimer2:'अंतिम पात्रता, लाभ की राशि व प्रक्रिया संबंधित विभाग/पोर्टल द्वारा ही तय व अद्यतन की जाती है — आवेदन से पूर्व आधिकारिक वेबसाइट या कार्यालय से पुष्टि अवश्य करें।',
     disclaimer3:'बाहरी लिंक अन्य सरकारी वेबसाइट्स की ओर ले जाते हैं, जिनकी सामग्री पर हमारा नियंत्रण नहीं है।',
     disclaimer4:'योजनाओं की राशि, दरें व नियम समय-समय पर बदलते हैं (जैसे — निक्षय पोषण राशि नवंबर 2024 में ₹500 से ₹1,000 हुई, मुद्रा ऋण सीमा अक्टूबर 2024 में ₹20 लाख हुई) — यहाँ दी गई राशियाँ हाल की जानकारी दर्शाती हैं, पर आवेदन से पूर्व आधिकारिक वेबसाइट पर अवश्य जांचें।',
+    disclaimer5:'आपातकालीन नंबर केवल त्वरित संपर्क हेतु दिए गए हैं — गंभीर स्थिति में तुरंत 112 पर कॉल करें।',
     lastUpdated:'स्रोत — आकांक्षी ब्लॉक कार्यक्रम संकेतक सूची (Praroop-13 व UP ABP+ मेटाडेटा) एवं संबंधित सरकारी पोर्टल। अंतिम समीक्षा — सितंबर 2026।',
   },
   en: {
     skip:'Skip to main content', eyebrow:'Aspirational Blocks Programme',
     title:'Yojana Sarathi', heroSub:"Tell us who you are — we'll show which government schemes apply to you, the eligibility, and where to go.",
     block:'Block', district:'District', division:'Division',
+    emergencyHeading:'Emergency numbers',
+    emergencyHint:'(tap/click to open)',
     searchLabel:'Search schemes', searchPlaceholder:"Search by scheme, health issue, crop or need — e.g. 'pregnant', 'toilet', 'insurance'",
     step1:'Step 1', step1Title:'Who are you?', step1Help:'Pick your situation — only related schemes will show below. Skip this to see everything.',
     step2:'Step 2', step2Title:'Or browse by department',
@@ -487,6 +550,7 @@ const STR = {
     resultsFound:'schemes found', emptyTitle:'No schemes found',
     emptyBody:'Try different search words, or contact your nearest Anganwadi / ASHA worker / Common Service Centre (CSC).',
     benefitLabel:'What you get', eligLabel:'Eligibility', contactLabel:'Where to contact', officialSite:'Official website',
+    listen:'Listen', stopListening:'Stop',
     clearAllFilters:'Clear all filters', removeFilter:'Remove', tryClearing:'Try clearing one of these filters —',
     filterPersona:'Who', filterCat:'Department', filterSearch:'Search',
     footerFellow:'CM Fellow — Salarpur Block, Budaun',
@@ -495,9 +559,27 @@ const STR = {
     disclaimer2:'Final eligibility, benefit amounts and process are decided and updated only by the concerned department/portal — please confirm with the official website or office before applying.',
     disclaimer3:'External links lead to other government websites whose content is outside our control.',
     disclaimer4:'Scheme amounts, rates and rules change over time (e.g. Nikshay Poshan nutrition support rose from ₹500 to ₹1,000 in November 2024; the Mudra loan limit rose to ₹20 lakh in October 2024) — figures here reflect recent information, but please verify on the official website before applying.',
+    disclaimer5:'Emergency numbers are provided for quick access only — in a serious situation, call 112 immediately.',
     lastUpdated:'Source — Aspirational Blocks Programme indicator lists (Praroop-13 and UP ABP+ metadata) and related government portals. Last reviewed — September 2026.',
   }
 };
+
+/* ---------------- Data: emergency helplines (each individually verified) ---------------- */
+const EMERGENCY = [
+  {num:'112', hi:'एकीकृत आपातकालीन सेवा', en:'Unified emergency (police/fire/ambulance)', special:'sos'},
+  {num:'108', hi:'एम्बुलेंस', en:'Ambulance', icon:'\uD83D\uDE91'},
+  {num:'102', hi:'एम्बुलेंस (स्वास्थ्य/गर्भावस्था)', en:'Ambulance (health/pregnancy)', icon:'\uD83E\uDD30\uD83D\uDE91'},
+  {num:'101', hi:'फायर ब्रिगेड', en:'Fire brigade', icon:'\uD83D\uDD25\uD83D\uDE92'},
+  {num:'1070', hi:'राहत हेल्पलाइन (आपदा)', en:'Rahat Helpline (disasters)', icon:'\uD83C\uDF0A\u26C8\uFE0F'},
+  {num:'1962', hi:'पशु चिकित्सा एम्बुलेंस', en:'Veterinary ambulance', icon:'\uD83D\uDE91\uD83D\uDC03\uD83D\uDC10\uD83D\uDC16'},
+  {num:'1090', hi:'यूपी विमेन पावर लाइन', en:'UP Women Power Line', icon:'\uD83D\uDEE1\uFE0F', accent:'pink'},
+  {num:'181', hi:'महिला हेल्पलाइन', en:'Women helpline', icon:'\uD83D\uDE4B\u200D\u2640\uFE0F'},
+  {num:'1098', hi:'चाइल्ड हेल्पलाइन', en:'Child helpline', icon:'\uD83D\uDC66\uD83D\uDC67'},
+  {num:'1930', hi:'साइबर क्राइम हेल्पलाइन', en:'Cyber crime helpline', icon:'\uD83E\uDDB9\uD83D\uDCBB\uD83D\uDCF1'},
+  {num:'1076', hi:'यूपी सीएम हेल्पलाइन', en:'UP CM Helpline', icon:'\uD83C\uDFDB\uFE0F', accent:'saffron'},
+  {num:'14416', hi:'टेली-मानस — मानसिक स्वास्थ्य सहायता', en:'Tele-MANAS — mental health support', icon:'\uD83D\uDE1F\uD83D\uDCAD'},
+  {num:'1933', hi:'मानस — नशा मुक्ति व सूचना हेल्पलाइन', en:'MANAS — anti-narcotics & de-addiction helpline', icon:'\uD83D\uDEAB\uD83D\uDC8A'},
+];
 
 /* ---------------- Data: personas ---------------- */
 const PERSONAS = [
@@ -511,6 +593,8 @@ const PERSONAS = [
   {id:'women',  hi:'महिला स्वयं सहायता समूह',       en:'Women\u2019s self-help group',  icon:ICONS.shg},
   {id:'house',  hi:'पक्का आवास नहीं / लाभ नहीं मिला', en:'No pucca house / no benefit yet', icon:ICONS.house},
   {id:'transgender', hi:'ट्रांसजेंडर नागरिक',        en:'Transgender citizen',           icon:ICONS.transgender},
+  {id:'senior', hi:'वरिष्ठ नागरिक (60+)',           en:'Senior citizen (60+)',          icon:ICONS.senior},
+  {id:'divyang',hi:'दिव्यांगजन',                    en:'Person with disability',        icon:ICONS.divyang},
   {id:'citizen',hi:'सामान्य नागरिक',                en:'General citizen',               icon:ICONS.citizen},
 ];
 
@@ -711,7 +795,7 @@ const SCHEMES = [
    benefit:{hi:'ग्रामीण युवाओं हेतु आवासीय प्रशिक्षण व प्लेसमेंट-आधारित रोज़गार।', en:'Residential training and placement-linked jobs for rural youth.'},
    eligibility:{hi:'15–35 वर्ष आयु, ग्रामीण गरीब परिवार के युवा।', en:'Age 15–35, from rural poor families.'},
    contact:{hi:'जिला ग्रामीण विकास अभिकरण (DRDA)', en:'District Rural Development Agency (DRDA)'}},
-  {cat:'skill', personas:['youth'], level:0, url:'https://www.rseti.in/',
+  {cat:'skill', personas:['youth'], level:0, url:'https://rural.gov.in/',
    name:{hi:'RSETI प्रशिक्षण', en:'RSETI training'},
    benefit:{hi:'स्वरोजगार हेतु निःशुल्क आवासीय प्रशिक्षण व ऋण सहायता जोड़ना।', en:'Free residential training for self-employment, linked to bank credit.'},
    eligibility:{hi:'18–45 वर्ष आयु, स्वरोजगार के इच्छुक युवा।', en:'Age 18–45, interested in self-employment.'},
@@ -728,7 +812,7 @@ const SCHEMES = [
    benefit:{hi:'पक्का घर बनाने हेतु आर्थिक सहायता।', en:'Financial assistance to build a pucca house.'},
    eligibility:{hi:'बेघर या कच्चे 1–2 कमरे के मकान वाले पात्र परिवार (SECC सूची अनुसार)।', en:'Eligible families who are shelterless or have a kuchha 1–2 room house (per SECC list).'},
    contact:{hi:'ग्राम पंचायत सचिव / खंड विकास अधिकारी', en:'Gram Panchayat secretary / Block Development Officer'}},
-  {cat:'rural', personas:['citizen'], level:0, url:'https://vbgramg.dord.gov.in/vbgramg/home.aspx',
+  {cat:'rural', personas:['citizen'], level:0, url:'https://nrega.nic.in/',
    name:{hi:'मनरेगा — जल संरचनाओं का जीर्णोद्धार (MGNREGA)', en:'MGNREGA — rejuvenation of water bodies'},
    benefit:{hi:'तालाब/जल संरचना पुनर्जीवन कार्य में 100 दिन रोज़गार गारंटी व मज़दूरी।', en:'100-day employment guarantee and wages for pond/water-body rejuvenation work.'},
    eligibility:{hi:'ग्रामीण क्षेत्र का कोई भी वयस्क, जॉब कार्ड धारक।', en:'Any rural adult with a job card.'},
@@ -779,6 +863,34 @@ const SCHEMES = [
    eligibility:{hi:'TG प्रमाण-पत्र/आईडी कार्ड धारक ट्रांसजेंडर व्यक्ति।', en:'Transgender persons holding a TG certificate/ID card.'},
    contact:{hi:'जिला समाज कल्याण अधिकारी / नज़दीकी गरिमा गृह', en:'District Social Welfare Officer / nearest Garima Greh'},
    keywords:'transgender ट्रांसजेंडर smile स्माइल garima greh गरिमा गृह shelter आश्रय'},
+
+  {cat:'health', personas:['senior','citizen'], level:0, url:'https://beneficiary.nha.gov.in/',
+   name:{hi:'आयुष्मान वय वंदना योजना (70+)', en:'Ayushman Vay Vandana Yojana (70+)'},
+   benefit:{hi:'70 वर्ष व अधिक आयु के हर नागरिक को ₹5 लाख/वर्ष का अलग स्वास्थ्य कवर — मौजूदा पारिवारिक PM-JAY कवर के अतिरिक्त, आय की कोई सीमा नहीं।', en:'A separate ₹5 lakh/year health cover for every citizen aged 70+, on top of any existing family PM-JAY cover — no income limit.'},
+   eligibility:{hi:'70 वर्ष व अधिक आयु के सभी नागरिक (पति-पत्नी दोनों 70+ हों तो ₹5 लाख साझा होता है)।', en:'All citizens aged 70+ (if both spouses are 70+, they share one ₹5 lakh limit).'},
+   contact:{hi:'नज़दीकी जन सेवा केंद्र (CSC) / आयुष्मान मित्र', en:'Nearest Common Service Centre (CSC) / Ayushman Mitra'},
+   keywords:'senior citizen elderly बुजुर्ग वरिष्ठ pension आयुष्मान वय वंदना 70'},
+
+  {cat:'social', personas:['divyang'], level:1, url:'https://esamajkalyan.up.gov.in/',
+   name:{hi:'दिव्यांगजन पेंशन योजना', en:'Divyangjan Pension Scheme'},
+   benefit:{hi:'40% या अधिक दिव्यांगता वाले व्यक्तियों को राज्य सरकार द्वारा मासिक पेंशन।', en:'Monthly state pension for persons with 40% or more disability.'},
+   eligibility:{hi:'UDID/दिव्यांगता प्रमाण-पत्र धारक, निर्धारित आय सीमा के भीतर।', en:'UDID/disability certificate holders, within the prescribed income limit.'},
+   contact:{hi:'जिला दिव्यांगजन सशक्तिकरण अधिकारी / esamajkalyan.up.gov.in', en:'District Divyangjan Empowerment Officer / esamajkalyan.up.gov.in'},
+   keywords:'disability disabled दिव्यांग विकलांग handicap pension udid'},
+
+  {cat:'social', personas:['child','student'], level:1, url:'https://mksy.up.gov.in/',
+   name:{hi:'कन्या सुमंगला योजना', en:'Kanya Sumangala Yojana'},
+   benefit:{hi:'जन्म से स्नातक तक 6 चरणों में कुल ₹25,000 की सहायता, बालिका के नाम सीधे।', en:'₹25,000 total, paid across 6 stages from birth to graduation, directly in the girl\u2019s name.'},
+   eligibility:{hi:'परिवार में अधिकतम 2 बालिकाएं, वार्षिक पारिवारिक आय ₹3 लाख से कम।', en:'Maximum 2 girls per family, annual family income under ₹3 lakh.'},
+   contact:{hi:'आंगनवाड़ी केंद्र / mksy.up.gov.in', en:'Anganwadi centre / mksy.up.gov.in'},
+   keywords:'girl daughter बेटी बालिका kanya sumangala'},
+
+  {cat:'social', personas:['child'], level:0, url:'https://missionvatsalya.wcd.gov.in/',
+   name:{hi:'प्रायोजन योजना (मिशन वात्सल्य)', en:'Sponsorship Yojana (Mission Vatsalya)'},
+   benefit:{hi:'अनाथ, एकल-अभिभावक या कठिन परिस्थिति वाले बच्चों के परिवार को ₹4,000 प्रतिमाह प्रति बच्चा — ताकि बच्चा संस्थान (शेल्टर होम) की बजाय अपने परिवार के साथ ही रह सके।', en:'₹4,000/month per child to the family of an orphaned, single-parent, or at-risk child — so the child stays with family instead of being institutionalised.'},
+   eligibility:{hi:'18 वर्ष से कम आयु के अनाथ/एकल-अभिभावक/देखभाल व सुरक्षा की जरूरत वाले बच्चे, बाल कल्याण समिति (CWC) की सिफारिश पर।', en:'Children under 18 who are orphaned, single-parent, or in need of care/protection, on recommendation of the Child Welfare Committee (CWC).'},
+   contact:{hi:'जिला बाल संरक्षण इकाई (DCPU) / बाल कल्याण समिति (CWC)', en:'District Child Protection Unit (DCPU) / Child Welfare Committee (CWC)'},
+   keywords:'sponsorship प्रायोजन orphan अनाथ vatsalya वात्सल्य foster care'},
 ];
 
 /* ---------------- State ---------------- */
@@ -868,6 +980,7 @@ function setLang(lang){
     label.querySelector('.label').textContent = PERSONAS[i][lang];
   });
   buildCatRow();
+  renderEmergency();
   render();
 }
 document.getElementById('btnHi').addEventListener('click', ()=>setLang('hi'));
@@ -983,6 +1096,7 @@ function render(){
     const card = document.createElement('div');
     card.className = 'scheme-card';
     const catLabel = CATS.find(c=>c.id===s.cat)[LANG];
+    const schemeIdx = SCHEMES.indexOf(s);
     card.innerHTML = `
       <div class="tagline">
         <h3>${s.name[LANG]}</h3>
@@ -993,10 +1107,78 @@ function render(){
       <div class="row"><span class="k where">${s_.contactLabel} — </span>${s.contact[LANG]}</div>
       <div class="row link-row"><span class="k">${s_.officialSite} — </span><a href="${s.url}" target="_blank" rel="noopener noreferrer">${domainOf(s.url)} ${ICONS.external}</a></div>
       <div class="cat-tag">${catLabel}</div>
+      ${VoiceModule.supported ? `<button class="voice-btn" type="button" data-scheme-idx="${schemeIdx}">\uD83D\uDD0A <span class="vlabel">${s_.listen}</span></button>` : ''}
     `;
     cardList.appendChild(card);
   });
 }
+
+/* ---------------- Voice module: reads a scheme aloud, Hindi or English ---------------- */
+const VoiceModule = (() => {
+  let voices = [];
+  let currentBtn = null;
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = () => { voices = speechSynthesis.getVoices(); };
+    voices = speechSynthesis.getVoices();
+  }
+  function pickVoice(lang){
+    const wanted = lang === 'hi' ? 'hi-IN' : 'en-IN';
+    return voices.find(v=>v.lang===wanted) || voices.find(v=>v.lang && v.lang.startsWith(lang)) || null;
+  }
+  function speakScheme(scheme, lang, btn){
+    if (!('speechSynthesis' in window)) return;
+    const wasSpeaking = speechSynthesis.speaking;
+    speechSynthesis.cancel();
+    if (currentBtn) { currentBtn.dataset.speaking = 'false'; currentBtn.querySelector('.vlabel').textContent = STR[LANG].listen; }
+    if (wasSpeaking && currentBtn === btn) { currentBtn = null; return; } // tap again to stop
+    const s_ = STR[lang];
+    const text = [scheme.name[lang], s_.benefitLabel+': '+scheme.benefit[lang], s_.eligLabel+': '+scheme.eligibility[lang], s_.contactLabel+': '+scheme.contact[lang]].join('. ');
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
+    const v = pickVoice(lang);
+    if (v) utter.voice = v;
+    utter.rate = 0.92;
+    utter.onend = () => { if(btn){ btn.dataset.speaking='false'; btn.querySelector('.vlabel').textContent = STR[LANG].listen; } currentBtn=null; };
+    speechSynthesis.speak(utter);
+    if (btn) { btn.dataset.speaking = 'true'; btn.querySelector('.vlabel').textContent = STR[LANG].stopListening; }
+    currentBtn = btn;
+  }
+  return { speakScheme, supported: 'speechSynthesis' in window };
+})();
+
+document.getElementById('cardList').addEventListener('click', (e)=>{
+  const btn = e.target.closest('.voice-btn');
+  if (!btn) return;
+  const scheme = SCHEMES[Number(btn.dataset.schemeIdx)];
+  VoiceModule.speakScheme(scheme, LANG, btn);
+});
+
+/* ---------------- Emergency helpline strip (collapsed by default — tap the banner to reveal) ---------------- */
+function renderEmergency(){
+  const wrap = document.getElementById('emergencyStrip');
+  wrap.innerHTML = EMERGENCY.map(e => {
+    const cls = ['ecard'];
+    if (e.accent) cls.push('accent-'+e.accent);
+    if (e.special === 'sos') cls.push('sos');
+    const iconHtml = e.special === 'sos'
+      ? `<span class="eicon sos-badge">SOS</span>`
+      : `<span class="eicon">${e.icon || ''}</span>`;
+    return `
+    <a class="${cls.join(' ')}" href="tel:${e.num}">
+      ${iconHtml}
+      <span class="enum">${e.num}</span>
+      <span class="elabel">${e[LANG]}</span>
+    </a>`;
+  }).join('');
+}
+document.getElementById('emergencyToggle').addEventListener('click', ()=>{
+  const btn = document.getElementById('emergencyToggle');
+  const strip = document.getElementById('emergencyStrip');
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!isOpen));
+  strip.hidden = isOpen;
+});
+renderEmergency();
 
 render();
 </script>
