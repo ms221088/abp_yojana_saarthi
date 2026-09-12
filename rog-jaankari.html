@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>रोग जानकारी — सालारपुर, बदायूँ</title>
+<meta name="description" content="सामान्य बीमारियों के लक्षण, सरकारी कार्यक्रम व सामान्य स्वास्थ्य मानक — जन-जागरूकता हेतु">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A4A; --ink-soft:#3F4B63;
+    --paper:#F6F1E3; --paper-2:#FBF8F0;
+    --marigold:#DE9F30; --marigold-deep:#A9700F;
+    --leaf:#3E5B3A; --rust:#8F2F21; --link:#0B4C8C; --line:#D8CDB0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Hind',sans-serif;font-size:17px;line-height:1.6;}
+  h1,h2,h3{font-family:'Baloo 2',sans-serif;color:var(--ink);margin:0;}
+  a{color:var(--link);}
+  .wrap{max-width:780px;margin:0 auto;padding:0 20px;}
+  .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  :focus-visible{outline:3px solid var(--marigold-deep);outline-offset:2px;}
+
+  header.hero{background:var(--ink);color:var(--paper-2);padding:16px 0 26px;border-bottom:6px solid var(--marigold);}
+  .top-bar{display:flex;justify-content:space-between;align-items:center;padding:6px 0 14px;flex-wrap:wrap;gap:10px;}
+  .back-link{color:#EAEFF7;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .back-link:hover{text-decoration:underline;}
+  .lang-toggle{display:inline-flex;border:1.5px solid #6E7A99;border-radius:999px;overflow:hidden;}
+  .lang-toggle button{font-family:'Hind',sans-serif;font-size:14px;font-weight:600;background:transparent;color:#C9D2E4;border:none;padding:6px 16px;cursor:pointer;}
+  .lang-toggle button[aria-pressed="true"]{background:var(--marigold);color:var(--ink);}
+  .hero h1{font-size:32px;font-weight:800;color:#fff;}
+  .hero .sub{margin-top:8px;font-size:16px;color:#D6DCEA;max-width:60ch;}
+
+  main{padding-bottom:40px;}
+  .section{padding:30px 0 6px;}
+  .section h2{font-size:22px;font-weight:700;margin-bottom:6px;}
+  .section .shelp{color:var(--ink-soft);font-size:15px;margin-bottom:16px;}
+
+  .vitals-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px;}
+  @media(min-width:560px){.vitals-grid{grid-template-columns:1fr 1fr;}}
+  .vital-card{background:var(--paper-2);border:1.5px solid var(--line);border-radius:6px;padding:14px 16px;}
+  .vital-card h3{font-size:16px;font-weight:700;color:var(--leaf);margin-bottom:6px;}
+  .vital-card .vrow{font-size:14.5px;margin-top:4px;}
+  .vital-card .vrow b{color:var(--ink);}
+  .vital-card .vwarn{font-size:13px;color:var(--rust);margin-top:6px;font-weight:600;}
+
+  .disease-card{background:var(--paper-2);border:3px double var(--ink);border-radius:2px;padding:16px 18px 15px;margin-top:14px;}
+  .disease-card h3{font-size:19px;font-weight:700;display:flex;align-items:center;gap:8px;}
+  .disease-card .row{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:15px;}
+  .disease-card .row:first-of-type{border-top:none;padding-top:0;}
+  .disease-card .row .k{font-weight:700;color:var(--leaf);}
+  .disease-card .row .k.doctor{color:var(--rust);}
+  .disease-card .row .k.prog{color:var(--marigold-deep);}
+  .disease-card .row a{color:var(--link);font-weight:600;}
+
+  .disclaimer{margin-top:30px;background:#EFE6CE;border:1.5px solid var(--marigold-deep);border-radius:4px;padding:16px 18px;}
+  .disclaimer h2{font-size:16px;font-weight:700;color:var(--rust);margin-bottom:8px;}
+  .disclaimer ul{margin:0;padding-inline-start:20px;}
+  .disclaimer li{font-size:14.5px;color:var(--ink-soft);margin-bottom:6px;}
+
+  footer{margin-top:32px;background:var(--ink);color:#C9D2E4;padding:26px 0 30px;font-size:14px;}
+  footer .wrap{display:flex;flex-direction:column;gap:6px;}
+  footer b{color:#fff;}
+  footer .note{margin-top:10px;color:#9FAAC4;font-size:13px;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top-bar">
+      <a class="back-link" href="index.html">&larr; <span data-str="backLink">योजना सारथी पर वापस जाएँ</span></a>
+      <div class="lang-toggle" role="group" aria-label="भाषा चुनें / Choose language">
+        <button type="button" id="btnHi" aria-pressed="true">हिंदी</button>
+        <button type="button" id="btnEn" aria-pressed="false">English</button>
+      </div>
+    </div>
+    <h1 data-str="title">रोग जानकारी</h1>
+    <p class="sub" data-str="heroSub">सामान्य बीमारियों के लक्षण, संबंधित सरकारी कार्यक्रम, और सामान्य स्वास्थ्य मानक — केवल जन-जागरूकता हेतु।</p>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <section class="section">
+    <h2 data-str="vitalsTitle">सामान्य स्वास्थ्य मानक</h2>
+    <p class="shelp" data-str="vitalsHelp">ये सामान्य वयस्क सीमाएं हैं — व्यक्ति अनुसार भिन्न हो सकती हैं। असामान्य मान मिलने पर स्वयं इलाज न करें, डॉक्टर से मिलें।</p>
+    <div class="vitals-grid" id="vitalsGrid"></div>
+  </section>
+
+  <section class="section">
+    <h2 data-str="communicableTitle">संचारी रोग (Communicable Diseases)</h2>
+    <p class="shelp" data-str="communicableHelp">ये लक्षण केवल पहचान में सहायता हेतु हैं — निदान व इलाज सदैव डॉक्टर द्वारा ही करवाएं।</p>
+    <div id="communicableList"></div>
+  </section>
+
+  <section class="section">
+    <h2 data-str="ncdTitle">गैर-संचारी रोग व मानसिक स्वास्थ्य (Non-Communicable & Mental Health)</h2>
+    <p class="shelp" data-str="ncdHelp"></p>
+    <div id="ncdList"></div>
+  </section>
+
+  <section class="disclaimer">
+    <h2 data-str="disclaimerTitle">अस्वीकरण</h2>
+    <ul>
+      <li data-str="disc1">यह पृष्ठ किसी सरकारी विभाग द्वारा संचालित नहीं है — यह केवल जन-जागरूकता हेतु एक स्वतंत्र सूचना सारांश है।</li>
+      <li data-str="disc2">यहाँ दी गई जानकारी निदान या उपचार का विकल्प नहीं है। लक्षण दिखने पर स्वयं दवा न लें — नज़दीकी स्वास्थ्य केंद्र या डॉक्टर से अवश्य संपर्क करें।</li>
+      <li data-str="disc3">मानसिक स्वास्थ्य संबंधी सहायता हेतु टेली-मानस — 14416 पर संपर्क करें (योजना सारथी पृष्ठ के आपातकालीन नंबर देखें)।</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b data-str="footerFellow">मुख्यमंत्री शोधार्थी (CM Fellow) — सालारपुर, बदायूँ</b></div>
+    <div class="note" data-str="lastUpdated">स्रोत — NTEP, NLEP, NCVBDC, NPCDCS, NMHP व राष्ट्रीय स्वास्थ्य मिशन के आधिकारिक पोर्टल। अंतिम समीक्षा — सितंबर 2026।</div>
+  </div>
+</footer>
+
+<script>
+const STR = {
+  hi: {
+    backLink:'योजना सारथी पर वापस जाएँ', title:'रोग जानकारी',
+    heroSub:'सामान्य बीमारियों के लक्षण, संबंधित सरकारी कार्यक्रम, और सामान्य स्वास्थ्य मानक — केवल जन-जागरूकता हेतु।',
+    vitalsTitle:'सामान्य स्वास्थ्य मानक', vitalsHelp:'ये सामान्य वयस्क सीमाएं हैं — व्यक्ति अनुसार भिन्न हो सकती हैं। असामान्य मान मिलने पर स्वयं इलाज न करें, डॉक्टर से मिलें।',
+    communicableTitle:'संचारी रोग (Communicable Diseases)', communicableHelp:'ये लक्षण केवल पहचान में सहायता हेतु हैं — निदान व इलाज सदैव डॉक्टर द्वारा ही करवाएं।',
+    ncdTitle:'गैर-संचारी रोग व मानसिक स्वास्थ्य (Non-Communicable & Mental Health)', ncdHelp:'',
+    disclaimerTitle:'अस्वीकरण',
+    disc1:'यह पृष्ठ किसी सरकारी विभाग द्वारा संचालित नहीं है — यह केवल जन-जागरूकता हेतु एक स्वतंत्र सूचना सारांश है।',
+    disc2:'यहाँ दी गई जानकारी निदान या उपचार का विकल्प नहीं है। लक्षण दिखने पर स्वयं दवा न लें — नज़दीकी स्वास्थ्य केंद्र या डॉक्टर से अवश्य संपर्क करें।',
+    disc3:'मानसिक स्वास्थ्य संबंधी सहायता हेतु टेली-मानस — 14416 पर संपर्क करें (योजना सारथी पृष्ठ के आपातकालीन नंबर देखें)।',
+    footerFellow:'मुख्यमंत्री शोधार्थी (CM Fellow) — सालारपुर, बदायूँ',
+    lastUpdated:'स्रोत — NTEP, NLEP, NCVBDC, NPCDCS, NMHP व राष्ट्रीय स्वास्थ्य मिशन के आधिकारिक पोर्टल। अंतिम समीक्षा — सितंबर 2026।',
+    symptoms:'लक्षण', program:'सरकारी कार्यक्रम', doctor:'कब डॉक्टर के पास जाएं', normal:'सामान्य सीमा', consult:'⚠️ असामान्य मिलने पर डॉक्टर से मिलें, स्वयं इलाज न करें',
+  },
+  en: {
+    backLink:'Back to Yojana Sarathi', title:'Disease & Health Information',
+    heroSub:'Symptoms of common diseases, related government programmes, and general health reference ranges — for public awareness only.',
+    vitalsTitle:'General Health Reference Ranges', vitalsHelp:'These are general adult ranges — they vary by individual. Do not self-treat if your reading is abnormal, see a doctor.',
+    communicableTitle:'Communicable Diseases', communicableHelp:'These symptoms are for awareness only — diagnosis and treatment should always be done by a doctor.',
+    ncdTitle:'Non-Communicable Diseases & Mental Health', ncdHelp:'',
+    disclaimerTitle:'Disclaimer',
+    disc1:'This page is not operated by any government department — it is an independent information summary for public awareness only.',
+    disc2:'Information here is not a substitute for diagnosis or treatment. Do not self-medicate if you notice symptoms — contact your nearest health centre or doctor.',
+    disc3:'For mental health support, contact Tele-MANAS — 14416 (see the emergency numbers on the Yojana Sarathi page).',
+    footerFellow:'CM Fellow — Salarpur Block, Budaun',
+    lastUpdated:'Source — official portals of NTEP, NLEP, NCVBDC, NPCDCS, NMHP and the National Health Mission. Last reviewed — September 2026.',
+    symptoms:'Symptoms', program:'Government programme', doctor:'When to see a doctor', normal:'Normal range', consult:'⚠️ If abnormal, see a doctor — do not self-treat',
+  }
+};
+
+const VITALS = [
+  {icon:'\u2764\uFE0F', name:{hi:'रक्तचाप (Blood Pressure)', en:'Blood Pressure'}, normal:{hi:'लगभग 90/60 – 120/80 mmHg', en:'About 90/60 – 120/80 mmHg'}, warn:{hi:'140/90 या अधिक होने पर डॉक्टर से मिलें', en:'See a doctor if 140/90 or higher'}},
+  {icon:'\uD83E\uDE78', name:{hi:'खाली पेट शुगर (Fasting Blood Sugar)', en:'Fasting Blood Sugar'}, normal:{hi:'70–99 mg/dL', en:'70–99 mg/dL'}, warn:{hi:'100–125 = पूर्व-मधुमेह सीमा; 126+ = डॉक्टर से जांच करवाएं', en:'100–125 = pre-diabetes range; 126+ = get checked by a doctor'}},
+  {icon:'\uD83C\uDF7D\uFE0F', name:{hi:'भोजन के 2 घंटे बाद शुगर', en:'Blood Sugar (2 hrs after meal)'}, normal:{hi:'140 mg/dL से कम', en:'Below 140 mg/dL'}, warn:{hi:'140–199 = पूर्व-मधुमेह सीमा; 200+ = डॉक्टर से जांच करवाएं', en:'140–199 = pre-diabetes range; 200+ = get checked by a doctor'}},
+  {icon:'\uD83C\uDF21\uFE0F', name:{hi:'शरीर का तापमान', en:'Body Temperature'}, normal:{hi:'97.8–99°F (36.5–37.3°C)', en:'97.8–99°F (36.5–37.3°C)'}, warn:{hi:'100.4°F (38°C) से अधिक = बुखार', en:'Above 100.4°F (38°C) = fever'}},
+  {icon:'\uD83D\uDC93', name:{hi:'नब्ज़ (Pulse)', en:'Pulse'}, normal:{hi:'60–100 बीट/मिनट (आराम की स्थिति में वयस्क)', en:'60–100 beats/min (adult, at rest)'}, warn:{hi:'लगातार बहुत तेज़/धीमी होने पर डॉक्टर से मिलें', en:'See a doctor if consistently very fast or very slow'}},
+];
+
+const COMMUNICABLE = [
+  {icon:'\uD83E\uDEC1', name:{hi:'क्षय रोग (टीबी)', en:'Tuberculosis (TB)'},
+   symptoms:{hi:'2 सप्ताह से अधिक खांसी, बलगम में खून, शाम को बुखार, वज़न घटना, रात में पसीना।', en:'Cough lasting more than 2 weeks, blood in sputum, evening fever, weight loss, night sweats.'},
+   program:{hi:'राष्ट्रीय क्षय रोग उन्मूलन कार्यक्रम (NTEP)', en:'National TB Elimination Programme (NTEP)'}, url:'https://tbcindia.gov.in/',
+   doctor:{hi:'2 सप्ताह से अधिक खांसी होने पर तुरंत नज़दीकी स्वास्थ्य केंद्र जाएं — जांच व इलाज निःशुल्क है।', en:'See your nearest health centre immediately if cough lasts more than 2 weeks — testing and treatment are free.'}},
+  {icon:'\uD83E\uDDB6', name:{hi:'कुष्ठ रोग (Leprosy)', en:'Leprosy'},
+   symptoms:{hi:'त्वचा पर हल्के/लाल रंग के सुन्न धब्बे, हाथ-पैरों में सुन्नपन या कमज़ोरी।', en:'Pale/reddish patches on skin with loss of sensation, numbness or weakness in hands/feet.'},
+   program:{hi:'राष्ट्रीय कुष्ठ उन्मूलन कार्यक्रम (NLEP)', en:'National Leprosy Eradication Programme (NLEP)'}, url:'https://dghs.mohfw.gov.in/nlep.php',
+   doctor:{hi:'त्वचा पर सुन्न धब्बे दिखें तो तुरंत जांच करवाएं — पूरी तरह ठीक होने वाली बीमारी है, शर्म न करें।', en:'Get checked immediately if you notice numb patches — fully curable, no need for stigma.'}},
+  {icon:'\uD83E\uDD9F', name:{hi:'मलेरिया', en:'Malaria'},
+   symptoms:{hi:'तेज़ बुखार व कंपकंपी (एक दिन छोड़कर), सिरदर्द, पसीना आना।', en:'High fever with chills (often every alternate day), headache, sweating.'},
+   program:{hi:'राष्ट्रीय वेक्टर जनित रोग नियंत्रण कार्यक्रम (NVBDCP)', en:'National Vector Borne Disease Control Programme (NVBDCP)'}, url:'https://ncvbdc.mohfw.gov.in/',
+   doctor:{hi:'तेज़ बुखार के साथ कंपकंपी हो तो तुरंत खून की जांच (मलेरिया टेस्ट) करवाएं।', en:'Get a blood test immediately if high fever comes with chills.'}},
+  {icon:'\uD83E\uDD9F', name:{hi:'डेंगू', en:'Dengue'},
+   symptoms:{hi:'तेज़ बुखार, तेज़ सिरदर्द, आंखों के पीछे दर्द, जोड़ों-मांसपेशियों में दर्द, त्वचा पर लाल चकत्ते।', en:'High fever, severe headache, pain behind the eyes, joint/muscle pain, skin rash.'},
+   program:{hi:'राष्ट्रीय वेक्टर जनित रोग नियंत्रण कार्यक्रम (NVBDCP)', en:'National Vector Borne Disease Control Programme (NVBDCP)'}, url:'https://ncvbdc.mohfw.gov.in/',
+   doctor:{hi:'तेज़ बुखार के साथ शरीर में तेज़ दर्द हो तो तुरंत जांच करवाएं — प्लेटलेट्स की निगरानी ज़रूरी है।', en:'See a doctor immediately for high fever with severe body pain — platelet monitoring is important.'}},
+  {icon:'\uD83E\uDD9F', name:{hi:'चिकनगुनिया', en:'Chikungunya'},
+   symptoms:{hi:'तेज़ बुखार, जोड़ों में तेज़ दर्द व सूजन (कई हफ्तों तक रह सकता है), त्वचा पर चकत्ते।', en:'High fever, severe joint pain and swelling (can last weeks), skin rash.'},
+   program:{hi:'राष्ट्रीय वेक्टर जनित रोग नियंत्रण कार्यक्रम (NVBDCP)', en:'National Vector Borne Disease Control Programme (NVBDCP)'}, url:'https://ncvbdc.mohfw.gov.in/',
+   doctor:{hi:'तेज़ जोड़ों के दर्द के साथ बुखार हो तो डॉक्टर से मिलें।', en:'See a doctor for fever with severe joint pain.'}},
+  {icon:'\uD83E\uDD9F', name:{hi:'जापानी इंसेफेलाइटिस / एईएस (दिमागी बुखार)', en:'Japanese Encephalitis / AES (Brain Fever)'},
+   symptoms:{hi:'तेज़ बुखार के साथ बेहोशी, दौरे (मिर्गी जैसे), गर्दन में अकड़न, व्यवहार में बदलाव — विशेषकर बच्चों में।', en:'High fever with altered consciousness, seizures, neck stiffness, behavioural change — especially in children.'},
+   program:{hi:'JE/AES रोकथाम कार्यक्रम (NVBDCP), टीकाकरण मिशन इंद्रधनुष में शामिल', en:'JE/AES Prevention Programme (NVBDCP); vaccine included under Mission Indradhanush'}, url:'https://ncvbdc.mohfw.gov.in/',
+   doctor:{hi:'यह आपातकालीन स्थिति है — तुरंत नज़दीकी अस्पताल ले जाएं, देर न करें।', en:'This is an emergency — take the patient to the nearest hospital immediately, do not delay.'}},
+  {icon:'\uD83D\uDCA7', name:{hi:'दस्त (डायरिया)', en:'Diarrhoea'},
+   symptoms:{hi:'बार-बार पतला मल, उल्टी, कमज़ोरी, बच्चों में सुस्ती व कम पेशाब (निर्जलीकरण के संकेत)।', en:'Frequent loose stools, vomiting, weakness, and in children — lethargy and reduced urination (signs of dehydration).'},
+   program:{hi:'STOP Diarrhoea Campaign (पूर्व नाम: IDCF) — ORS व ज़िंक', en:'STOP Diarrhoea Campaign (formerly IDCF) — ORS & Zinc'}, url:'https://nhm.gov.in/',
+   doctor:{hi:'तुरंत ORS घोल दें, 14 दिन ज़िंक दें (बच्चों को)। बार-बार उल्टी, बहुत कमज़ोरी या पेशाब बंद होने पर तुरंत अस्पताल जाएं।', en:'Start ORS immediately, give zinc for 14 days (in children). Go to hospital immediately for repeated vomiting, severe weakness, or no urination.'}},
+];
+
+const NCD = [
+  {icon:'\uD83E\uDDE0', name:{hi:'सिज़ोफ्रेनिया / गंभीर मानसिक बीमारी', en:'Schizophrenia / Severe Mental Illness'},
+   symptoms:{hi:'बिना वजह डर या शक होना, अकेले बड़बड़ाना, आवाज़ें सुनना जो और कोई नहीं सुनता, सामाजिक जीवन से दूरी, व्यवहार में बड़ा बदलाव।', en:'Unexplained fear or suspicion, talking to oneself, hearing voices others cannot hear, withdrawing from social life, major behavioural change.'},
+   program:{hi:'राष्ट्रीय मानसिक स्वास्थ्य कार्यक्रम (NMHP) / जिला मानसिक स्वास्थ्य कार्यक्रम (DMHP) / टेली-मानस 14416', en:'National Mental Health Programme (NMHP) / District Mental Health Programme (DMHP) / Tele-MANAS 14416'}, url:'https://telemanas.mohfw.gov.in/',
+   doctor:{hi:'यह एक इलाज योग्य चिकित्सीय स्थिति है, न कि कमज़ोरी — कलंक न मानें। नज़दीकी CHC या DMHP केंद्र पर मनोचिकित्सक से मिलें, या 14416 पर कॉल करें।', en:'This is a treatable medical condition, not a weakness — please do not stigmatise. See a psychiatrist at your nearest CHC/DMHP centre, or call 14416.'}},
+  {icon:'\uD83E\uDE78', name:{hi:'मधुमेह (डायबिटीज़)', en:'Diabetes'},
+   symptoms:{hi:'बार-बार प्यास व पेशाब लगना, अत्यधिक भूख, बिना वजह वज़न घटना, थकान, घाव देर से भरना।', en:'Frequent thirst and urination, excessive hunger, unexplained weight loss, fatigue, slow-healing wounds.'},
+   program:{hi:'राष्ट्रीय NCD कार्यक्रम (NPCDCS) — HWC पर मुफ्त जांच (30+ आयु)', en:'National NCD Programme (NPCDCS) — free screening at HWCs (age 30+)'}, url:'https://ncd.mohfw.gov.in/',
+   doctor:{hi:'30 वर्ष से अधिक आयु में नियमित शुगर जांच करवाएं। लक्षण दिखने पर तुरंत डॉक्टर से मिलें।', en:'Get regular sugar tests after age 30. See a doctor immediately if symptoms appear.'}},
+  {icon:'\u2764\uFE0F', name:{hi:'उच्च रक्तचाप (हाइपरटेंशन)', en:'Hypertension (High BP)'},
+   symptoms:{hi:'अक्सर कोई लक्षण नहीं होते ("साइलेंट किलर") — कभी-कभी सिरदर्द, चक्कर, सांस फूलना।', en:'Often no symptoms at all ("silent killer") — sometimes headache, dizziness, breathlessness.'},
+   program:{hi:'राष्ट्रीय NCD कार्यक्रम (NPCDCS) — HWC पर मुफ्त जांच (30+ आयु)', en:'National NCD Programme (NPCDCS) — free screening at HWCs (age 30+)'}, url:'https://ncd.mohfw.gov.in/',
+   doctor:{hi:'लक्षण न हों तब भी 30 वर्ष से अधिक आयु में नियमित BP जांच करवाएं — यही सबसे ज़रूरी कदम है।', en:'Get your BP checked regularly after 30 even without symptoms — this is the single most important step.'}},
+];
+
+let LANG = 'hi';
+
+function renderVitals(){
+  document.getElementById('vitalsGrid').innerHTML = VITALS.map(v => `
+    <div class="vital-card">
+      <h3>${v.icon} ${v.name[LANG]}</h3>
+      <div class="vrow"><b>${STR[LANG].normal}:</b> ${v.normal[LANG]}</div>
+      <div class="vwarn">${v.warn[LANG]}</div>
+    </div>`).join('');
+}
+
+function diseaseCardHtml(d){
+  return `
+    <div class="disease-card">
+      <h3>${d.icon} ${d.name[LANG]}</h3>
+      <div class="row"><span class="k">${STR[LANG].symptoms} — </span>${d.symptoms[LANG]}</div>
+      <div class="row"><span class="k prog">${STR[LANG].program} — </span>${d.program[LANG]} (<a href="${d.url}" target="_blank" rel="noopener noreferrer">${d.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</a>)</div>
+      <div class="row"><span class="k doctor">${STR[LANG].doctor} — </span>${d.doctor[LANG]}</div>
+    </div>`;
+}
+
+function renderDiseases(){
+  document.getElementById('communicableList').innerHTML = COMMUNICABLE.map(diseaseCardHtml).join('');
+  document.getElementById('ncdList').innerHTML = NCD.map(diseaseCardHtml).join('');
+}
+
+function setLang(lang){
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('btnHi').setAttribute('aria-pressed', String(lang==='hi'));
+  document.getElementById('btnEn').setAttribute('aria-pressed', String(lang==='en'));
+  document.querySelectorAll('[data-str]').forEach(el=>{
+    const key = el.getAttribute('data-str');
+    if(STR[lang][key] !== undefined) el.textContent = STR[lang][key];
+  });
+  document.title = lang==='hi' ? 'रोग जानकारी — सालारपुर, बदायूँ' : 'Disease Information — Salarpur, Budaun';
+  renderVitals();
+  renderDiseases();
+}
+document.getElementById('btnHi').addEventListener('click', ()=>setLang('hi'));
+document.getElementById('btnEn').addEventListener('click', ()=>setLang('en'));
+
+setLang('hi');
+</script>
+</body>
+</html>

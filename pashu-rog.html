@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>पशु रोग जानकारी — सालारपुर, बदायूँ</title>
+<meta name="description" content="पशुओं की सामान्य बीमारियों के लक्षण, बचाव व सरकारी कार्यक्रम — जन-जागरूकता हेतु">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A4A; --ink-soft:#3F4B63;
+    --paper:#F6F1E3; --paper-2:#FBF8F0;
+    --marigold:#DE9F30; --marigold-deep:#A9700F;
+    --leaf:#3E5B3A; --rust:#8F2F21; --link:#0B4C8C; --line:#D8CDB0;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Hind',sans-serif;font-size:17px;line-height:1.6;}
+  h1,h2,h3{font-family:'Baloo 2',sans-serif;color:var(--ink);margin:0;}
+  a{color:var(--link);}
+  .wrap{max-width:780px;margin:0 auto;padding:0 20px;}
+  .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  :focus-visible{outline:3px solid var(--marigold-deep);outline-offset:2px;}
+
+  header.hero{background:var(--ink);color:var(--paper-2);padding:16px 0 26px;border-bottom:6px solid var(--marigold);}
+  .top-bar{display:flex;justify-content:space-between;align-items:center;padding:6px 0 14px;flex-wrap:wrap;gap:10px;}
+  .back-link{color:#EAEFF7;font-size:14.5px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .back-link:hover{text-decoration:underline;}
+  .lang-toggle{display:inline-flex;border:1.5px solid #6E7A99;border-radius:999px;overflow:hidden;}
+  .lang-toggle button{font-family:'Hind',sans-serif;font-size:14px;font-weight:600;background:transparent;color:#C9D2E4;border:none;padding:6px 16px;cursor:pointer;}
+  .lang-toggle button[aria-pressed="true"]{background:var(--marigold);color:var(--ink);}
+  .hero h1{font-size:32px;font-weight:800;color:#fff;}
+  .hero .sub{margin-top:8px;font-size:16px;color:#D6DCEA;max-width:60ch;}
+
+  .helpline-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .hcard{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:80px;background:rgba(255,255,255,.08);border:1.5px solid #E77E7E;border-radius:6px;padding:8px 12px;text-decoration:none;}
+  .hcard .hnum{font-size:16px;font-weight:800;color:#FF9B9B;}
+  .hcard .hlabel{font-size:10.5px;color:#EAEFF7;text-align:center;line-height:1.2;}
+
+  main{padding-bottom:40px;}
+  .section{padding:30px 0 6px;}
+  .section h2{font-size:22px;font-weight:700;margin-bottom:6px;}
+  .section .shelp{color:var(--ink-soft);font-size:15px;margin-bottom:16px;}
+
+  .disease-card{background:var(--paper-2);border:3px double var(--ink);border-radius:2px;padding:16px 18px 15px;margin-top:14px;}
+  .disease-card h3{font-size:19px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .disease-card .zoonotic-badge{font-size:11.5px;font-weight:700;background:var(--rust);color:#fff;padding:2px 9px;border-radius:999px;}
+  .disease-card .safe-badge{font-size:11.5px;font-weight:700;background:var(--leaf);color:#fff;padding:2px 9px;border-radius:999px;}
+  .disease-card .row{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);font-size:15px;}
+  .disease-card .row:first-of-type{border-top:none;padding-top:0;}
+  .disease-card .row .k{font-weight:700;color:var(--leaf);}
+  .disease-card .row .k.warn{color:var(--rust);}
+  .disease-card .row .k.prog{color:var(--marigold-deep);}
+  .disease-card .row a{color:var(--link);font-weight:600;}
+
+  .note-card{background:#EAF1E6;border:1.5px solid var(--leaf);border-radius:6px;padding:14px 16px;margin-top:14px;}
+  .note-card h3{font-size:16px;font-weight:700;color:var(--leaf);margin-bottom:6px;}
+  .note-card ul{margin:0;padding-inline-start:20px;}
+  .note-card li{font-size:14.5px;margin-bottom:5px;}
+
+  .disclaimer{margin-top:30px;background:#EFE6CE;border:1.5px solid var(--marigold-deep);border-radius:4px;padding:16px 18px;}
+  .disclaimer h2{font-size:16px;font-weight:700;color:var(--rust);margin-bottom:8px;}
+  .disclaimer ul{margin:0;padding-inline-start:20px;}
+  .disclaimer li{font-size:14.5px;color:var(--ink-soft);margin-bottom:6px;}
+
+  footer{margin-top:32px;background:var(--ink);color:#C9D2E4;padding:26px 0 30px;font-size:14px;}
+  footer .wrap{display:flex;flex-direction:column;gap:6px;}
+  footer b{color:#fff;}
+  footer .note{margin-top:10px;color:#9FAAC4;font-size:13px;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top-bar">
+      <a class="back-link" href="index.html">&larr; <span data-str="backLink">योजना सारथी पर वापस जाएँ</span></a>
+      <div class="lang-toggle" role="group" aria-label="भाषा चुनें / Choose language">
+        <button type="button" id="btnHi" aria-pressed="true">हिंदी</button>
+        <button type="button" id="btnEn" aria-pressed="false">English</button>
+      </div>
+    </div>
+    <h1 data-str="title">पशु रोग जानकारी</h1>
+    <p class="sub" data-str="heroSub">पशुओं की सामान्य बीमारियों के लक्षण, बचाव व संबंधित सरकारी कार्यक्रम — पशुपालन विभाग, बदायूँ के पम्पलेट्स पर आधारित।</p>
+    <div class="helpline-strip">
+      <a class="hcard" href="tel:1962"><span class="hnum">1962</span><span class="hlabel" data-str="hVet">पशु चिकित्सा एम्बुलेंस</span></a>
+      <a class="hcard" href="tel:18001805141"><span class="hnum">1800-180-5141</span><span class="hlabel" data-str="hHelp">पशुपालन हेल्पलाइन</span></a>
+      <a class="hcard" href="tel:05222741991"><span class="hnum">0522-2741991</span><span class="hlabel" data-str="hSamasya">पशुधन समस्या निवारण केंद्र</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <section class="section">
+    <h2 data-str="diseaseTitle">पशुओं की सामान्य बीमारियां</h2>
+    <p class="shelp" data-str="diseaseHelp">लक्षण दिखने पर तुरंत नज़दीकी पशु चिकित्सालय से संपर्क करें — स्वयं इलाज न करें।</p>
+    <div id="diseaseList"></div>
+  </section>
+
+  <section class="section">
+    <h2 data-str="dewormTitle">कृमि नाशक व सामान्य देखभाल</h2>
+    <div class="note-card">
+      <h3 data-str="dewormH3">नियमित पालन योग्य बातें</h3>
+      <ul id="dewormList"></ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 data-str="aiTitle">कृत्रिम गर्भाधान — मुख्य बातें</h2>
+    <div class="note-card">
+      <h3 data-str="aiH3">पशुपालकों हेतु सुझाव</h3>
+      <ul id="aiList"></ul>
+    </div>
+  </section>
+
+  <section class="disclaimer">
+    <h2 data-str="disclaimerTitle">अस्वीकरण</h2>
+    <ul>
+      <li data-str="disc1">यह पृष्ठ किसी सरकारी विभाग द्वारा संचालित नहीं है — यह जन-जागरूकता हेतु एक स्वतंत्र सूचना सारांश है, पशुपालन विभाग जनपद-बदायूँ के प्रकाशित पम्पलेट्स पर आधारित।</li>
+      <li data-str="disc2">लक्षण दिखने पर स्वयं इलाज न करें — नज़दीकी सरकारी पशु चिकित्सालय से तुरंत संपर्क करें।</li>
+      <li data-str="disc3">ग्लैंडर्स/फार्सी मनुष्यों में भी फैल सकता है — संदेह होने पर तुरंत पशु चिकित्सक व चिकित्सक दोनों से संपर्क करें।</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b data-str="footerFellow">मुख्यमंत्री शोधार्थी (CM Fellow) — सालारपुर, बदायूँ</b></div>
+    <div class="note" data-str="lastUpdated">स्रोत — पशुपालन विभाग जनपद-बदायूँ के जनहित पम्पलेट्स व NADCP। अंतिम समीक्षा — सितंबर 2026।</div>
+  </div>
+</footer>
+
+<script>
+const STR = {
+  hi: {
+    backLink:'योजना सारथी पर वापस जाएँ', title:'पशु रोग जानकारी',
+    heroSub:'पशुओं की सामान्य बीमारियों के लक्षण, बचाव व संबंधित सरकारी कार्यक्रम — पशुपालन विभाग, बदायूँ के पम्पलेट्स पर आधारित।',
+    hVet:'पशु चिकित्सा एम्बुलेंस', hHelp:'पशुपालन हेल्पलाइन', hSamasya:'पशुधन समस्या निवारण केंद्र',
+    diseaseTitle:'पशुओं की सामान्य बीमारियां', diseaseHelp:'लक्षण दिखने पर तुरंत नज़दीकी पशु चिकित्सालय से संपर्क करें — स्वयं इलाज न करें।',
+    dewormTitle:'कृमि नाशक व सामान्य देखभाल', dewormH3:'नियमित पालन योग्य बातें',
+    aiTitle:'कृत्रिम गर्भाधान — मुख्य बातें', aiH3:'पशुपालकों हेतु सुझाव',
+    disclaimerTitle:'अस्वीकरण',
+    disc1:'यह पृष्ठ किसी सरकारी विभाग द्वारा संचालित नहीं है — यह जन-जागरूकता हेतु एक स्वतंत्र सूचना सारांश है, पशुपालन विभाग जनपद-बदायूँ के प्रकाशित पम्पलेट्स पर आधारित।',
+    disc2:'लक्षण दिखने पर स्वयं इलाज न करें — नज़दीकी सरकारी पशु चिकित्सालय से तुरंत संपर्क करें।',
+    disc3:'ग्लैंडर्स/फार्सी मनुष्यों में भी फैल सकता है — संदेह होने पर तुरंत पशु चिकित्सक व चिकित्सक दोनों से संपर्क करें।',
+    footerFellow:'मुख्यमंत्री शोधार्थी (CM Fellow) — सालारपुर, बदायूँ',
+    lastUpdated:'स्रोत — पशुपालन विभाग जनपद-बदायूँ के जनहित पम्पलेट्स व NADCP। अंतिम समीक्षा — सितंबर 2026।',
+    symptoms:'लक्षण', spread:'कैसे फैलता है', prevention:'बचाव व सलाह', program:'सरकारी कार्यक्रम',
+  },
+  en: {
+    backLink:'Back to Yojana Sarathi', title:'Animal Disease Information',
+    heroSub:'Symptoms and prevention for common livestock diseases, and related government programmes — based on Budaun Animal Husbandry Department pamphlets.',
+    hVet:'Veterinary Ambulance', hHelp:'Animal Husbandry Helpline', hSamasya:'Livestock Problem Resolution Centre',
+    diseaseTitle:'Common Animal Diseases', diseaseHelp:'Contact your nearest veterinary hospital immediately if you notice symptoms — do not self-treat.',
+    dewormTitle:'Deworming & General Care', dewormH3:'Standing practices to follow',
+    aiTitle:'Artificial Insemination — Key Points', aiH3:'Tips for livestock owners',
+    disclaimerTitle:'Disclaimer',
+    disc1:'This page is not operated by any government department — it is an independent awareness summary based on pamphlets published by the Budaun Animal Husbandry Department.',
+    disc2:'Do not self-treat if you notice symptoms — contact your nearest government veterinary hospital immediately.',
+    disc3:'Glanders/Farcy can spread to humans too — if suspected, contact both a veterinarian and a doctor immediately.',
+    footerFellow:'CM Fellow — Salarpur Block, Budaun',
+    lastUpdated:'Source — Budaun Animal Husbandry Department public pamphlets and NADCP. Last reviewed — September 2026.',
+    symptoms:'Symptoms', spread:'How it spreads', prevention:'Prevention & advice', program:'Government programme',
+  }
+};
+
+const DISEASES = [
+  {icon:'\uD83D\uDC04', zoonotic:false, name:{hi:'खुरपका-मुँहपका रोग (FMD)', en:'Foot-and-Mouth Disease (FMD)'},
+   symptoms:{hi:'तीव्र बुखार, मुंह-जीभ पर व खुरों के बीच छाले, फटने पर घाव, गंदगी लगने से खुरों में कीड़े पड़ना।', en:'High fever, blisters on mouth/tongue and between hooves, wounds when blisters burst, maggots in hooves if kept dirty.'},
+   prevention:{hi:'सभी पशुओं को खुरपका-मुँहपका का टीका अवश्य लगवाएं — "उपचार से बचाव बेहतर है"। पशु खाना-पीना छोड़ सकता है, दूध कम हो सकता है, कमज़ोरी से मृत्यु भी संभव।', en:'Vaccinate all animals against FMD — "prevention is better than cure". Animal may stop eating/drinking, milk yield drops, weakness can even cause death.'},
+   program:{hi:'राष्ट्रीय पशु रोग नियंत्रण कार्यक्रम (NADCP) — निःशुल्क टीकाकरण', en:'National Animal Disease Control Programme (NADCP) — free vaccination'}, url:'https://animalhusb.upsdc.gov.in/'},
+  {icon:'\uD83D\uDC02', zoonotic:false, name:{hi:'लम्पी चर्म रोग (LSD)', en:'Lumpy Skin Disease (LSD)'},
+   symptoms:{hi:'बुखार, मुंह-नाक से स्राव, दूध उत्पादन कम होना, त्वचा के नीचे छोटी-छोटी गांठें, गले-छाती-पैरों में सूजन। मुख्यतः गोवंश में, भैंसों में ना के बराबर।', en:'Fever, discharge from mouth/nose, reduced milk yield, small nodules under the skin, swelling in neck/chest/legs. Mainly cattle, rare in buffalo.'},
+   spread:{hi:'गर्म-नम मौसम में मक्खी, मच्छर व चीचड़ के काटने से; स्वस्थ पशु के बीमार पशु के संपर्क में आने से भी। मनुष्यों में नहीं फैलता।', en:'Spreads via flies/mosquitoes/ticks in warm-humid weather, or contact with an infected animal. Does not spread to humans.'},
+   prevention:{hi:'बीमार पशु को स्वस्थ पशुओं से अलग रखें; मक्खी-मच्छर रोधी दवा का प्रयोग करें; बीमार पशु का दूध उबालकर ही प्रयोग करें; उचित देखभाल से 10-15 दिन में पूर्ण स्वस्थ हो जाता है; मृत्यु दर 1% से भी कम। सरकार द्वारा घर पर निःशुल्क टीकाकरण।', en:'Isolate sick animals; use fly/mosquito repellents; boil milk from an infected animal before use; recovers fully in 10-15 days with proper care; death rate under 1%. Free doorstep government vaccination available.'},
+   program:{hi:'पशुपालन विभाग — निःशुल्क टीकाकरण अभियान', en:'Animal Husbandry Department — free vaccination drive'}, url:'https://animalhusb.upsdc.gov.in/'},
+  {icon:'\uD83D\uDC03', zoonotic:false, name:{hi:'गलघोंटू (Haemorrhagic Septicaemia / HS)', en:'Gala Ghontu (Haemorrhagic Septicaemia / HS)'},
+   symptoms:{hi:'तेज़ बुखार, गले में सूजन, सांस लेने में तकलीफ — तेज़ी से फैलने वाला जीवाणु रोग, बिना इलाज घातक हो सकता है।', en:'High fever, throat swelling, breathing difficulty — a fast-spreading bacterial disease, can be fatal without treatment.'},
+   prevention:{hi:'सभी गोवंश/महिषवंशीय पशुओं को गलघोंटू (HS) व खुरपका-मुँहपका (FMD) का टीका एक साथ लगवाएं।', en:'Vaccinate all cattle/buffalo against HS along with FMD — usually given together.'},
+   program:{hi:'राष्ट्रीय पशु रोग नियंत्रण कार्यक्रम (NADCP)', en:'National Animal Disease Control Programme (NADCP)'}, url:'https://animalhusb.upsdc.gov.in/'},
+  {icon:'\uD83D\uDC10', zoonotic:false, name:{hi:'पीपीआर / बकरी प्लेग (PPR)', en:'PPR / Goat Plague'},
+   symptoms:{hi:'तेज़ बुखार, आंख-नाक से स्राव, मुंह में छाले, दस्त, सांस लेने में तकलीफ — भेड़-बकरियों में तेज़ी से फैलता है।', en:'High fever, discharge from eyes/nose, mouth ulcers, diarrhoea, breathing difficulty — spreads rapidly among sheep/goats.'},
+   prevention:{hi:'सभी भेड़-बकरियों का PPR टीकाकरण करवाएं; बीमार पशु को झुंड से तुरंत अलग करें।', en:'Get all sheep/goats vaccinated against PPR; isolate a sick animal from the flock immediately.'},
+   program:{hi:'राष्ट्रीय पशु रोग नियंत्रण कार्यक्रम (NADCP)', en:'National Animal Disease Control Programme (NADCP)'}, url:'https://animalhusb.upsdc.gov.in/'},
+  {icon:'\uD83D\uDC16', zoonotic:false, name:{hi:'स्वाइन फीवर (सुअरों में)', en:'Swine Fever (in pigs)'},
+   symptoms:{hi:'तेज़ बुखार, कमज़ोरी, त्वचा पर लाल-नीले धब्बे, भूख न लगना — अत्यंत संक्रामक, मृत्यु दर बहुत अधिक हो सकती है।', en:'High fever, weakness, red-blue skin patches, loss of appetite — highly contagious, mortality can be very high.'},
+   prevention:{hi:'बीमार सुअर को तुरंत झुंड से अलग करें; नज़दीकी पशु चिकित्सक को तुरंत सूचित करें; कोई प्रभावी इलाज नहीं है, प्रकोप रोकना ही मुख्य उपाय है।', en:'Isolate a sick pig from the herd immediately; inform the nearest veterinarian right away; no effective treatment exists, containment is the main response.'},
+   program:{hi:'पशु चिकित्सा अधिकारी से संपर्क करें', en:'Contact the Veterinary Officer'}, url:'https://animalhusb.upsdc.gov.in/'},
+  {icon:'\uD83D\uDC0E', zoonotic:true, name:{hi:'ग्लैंडर्स / फार्सी (घोड़े, गधे, खच्चर)', en:'Glanders / Farcy (horses, donkeys, mules)'},
+   symptoms:{hi:'त्वचा पर फोड़े-घुमड़ियां, नाक के अंदर फटे छाले, तेज़ बुखार, नाक से पीला स्राव व सांस लेने में तकलीफ, खांसी। इलाज के बाद भी सामान्य दिखते हुए पशु बीमारी फैलाता रह सकता है।', en:'Skin boils/nodules, ruptured ulcers inside the nose, high fever, yellow nasal discharge with breathing difficulty, cough. Even after treatment, an animal can look normal yet keep spreading the disease.'},
+   spread:{hi:'बीमार पशु के साथ रहने से, उसके मुंह-नाक के स्राव से, या साझा चारा-पानी से — यह बीमारी मनुष्यों में भी फैल सकती है।', en:'By living with a sick animal, contact with its nasal/mouth discharge, or shared feed and water — this disease can spread to humans too.'},
+   prevention:{hi:'इस बीमारी का कोई टीका या इलाज नहीं है — लाइलाज व घातक है। बीमार पशु की तुरंत जांच करवाएं, स्वस्थ पशु से अलग रखें, चारा-पानी अलग रखें, मृत्यु पर 6 फुट गहरे गड्ढे में चूना-नमक डालकर दबाएं, पशु को छूने के बाद साबुन/एंटीसेप्टिक से हाथ धोएं।', en:'There is no vaccine or cure — incurable and fatal. Get a sick animal tested immediately, isolate it, keep its feed/water separate, bury a dead animal 6 feet deep with lime and salt, wash hands with soap/antiseptic after any contact.'},
+   program:{hi:'मुख्य पशु चिकित्साधिकारी, पशुपालन विभाग बदायूँ को तुरंत सूचित करें', en:'Report immediately to the Chief Veterinary Officer, Animal Husbandry Department Budaun'}, url:'https://animalhusb.upsdc.gov.in/'},
+];
+
+const DEWORM = [
+  {hi:'साल में कम से कम दो बार सभी पशुओं को कीड़ों (कृमि) की दवा अवश्य खिलाएं।', en:'Deworm all animals at least twice a year.'},
+  {hi:'व्याने (बच्चा जन्म) से दो माह पूर्व व दो माह बाद तक दलिया अवश्य खिलायें।', en:'Feed porridge/dalia from 2 months before calving until 2 months after.'},
+  {hi:'बच्चे को जन्म के 15-20 दिन में कीड़ों की दवा पिलायें।', en:'Give deworming medicine to the newborn calf within 15-20 days of birth.'},
+  {hi:'पशुओं का आवास ठंडा, साफ-सुथरा, हवादार व फर्श समतल होना चाहिए।', en:'Animal housing should be cool, clean, well-ventilated, with a level floor.'},
+  {hi:'संतुलित पशु आहार — भूसा-खल, चूनी-चोकर-दाना के साथ मिनरल मिक्चर व हरा चारा नियमित दें।', en:'Balanced feed — husk/oilcake, bran/grain, plus mineral mixture and regular green fodder.'},
+];
+
+const AI_TIPS = [
+  {hi:'भैंस 8-24 घंटे हीट (मद) में रहती है — तोड़ा दिखते ही उसी दिन उन्नतशील सांड के वीर्य से कृत्रिम गर्भाधान करायें।', en:'A buffalo stays in heat for 8-24 hours — inseminate the same day signs appear, using semen from an improved bull.'},
+  {hi:'गर्भाधान के 19-20 दिन बाद पशु पर ध्यान दें — यदि फिर से हीट में आए तो दोबारा कृत्रिम गर्भाधान करायें।', en:'Watch the animal 19-20 days after insemination — if it comes into heat again, repeat the insemination.'},
+  {hi:'गर्भाधान के बाद फिर हीट में न आने पर 3 माह बाद पशु चिकित्सक से गर्भ अवश्य जंचवाएं।', en:'If the animal does not return to heat after insemination, get pregnancy confirmed by a vet after 3 months.'},
+  {hi:'उन्नत प्रजनन हेतु अधिकतम 13 माह का ब्यांत अंतराल रखना सबसे उपयुक्त है।', en:'A maximum 13-month calving interval is considered ideal for good breeding outcomes.'},
+  {hi:'व्याने से 2-2.5 माह पूर्व दूध निकालना बंद कर दें, ताकि पशु व आने वाले बच्चे दोनों स्वस्थ रहें।', en:'Stop milking 2-2.5 months before calving, for the health of both the animal and the calf.'},
+];
+
+let LANG = 'hi';
+
+function diseaseCardHtml(d){
+  const badge = d.zoonotic
+    ? `<span class="zoonotic-badge">${LANG==='hi'?'⚠️ मनुष्यों में भी फैलता है':'⚠️ Can spread to humans'}</span>`
+    : `<span class="safe-badge">${LANG==='hi'?'मनुष्यों में नहीं फैलता':'Does not spread to humans'}</span>`;
+  const spreadRow = d.spread ? `<div class="row"><span class="k">${STR[LANG].spread} — </span>${d.spread[LANG]}</div>` : '';
+  return `
+    <div class="disease-card">
+      <h3>${d.icon} ${d.name[LANG]} ${badge}</h3>
+      <div class="row"><span class="k warn">${STR[LANG].symptoms} — </span>${d.symptoms[LANG]}</div>
+      ${spreadRow}
+      <div class="row"><span class="k">${STR[LANG].prevention} — </span>${d.prevention[LANG]}</div>
+      <div class="row"><span class="k prog">${STR[LANG].program} — </span>${d.program[LANG]} (<a href="${d.url}" target="_blank" rel="noopener noreferrer">${d.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</a>)</div>
+    </div>`;
+}
+
+function render(){
+  document.getElementById('diseaseList').innerHTML = DISEASES.map(diseaseCardHtml).join('');
+  document.getElementById('dewormList').innerHTML = DEWORM.map(d=>`<li>${d[LANG]}</li>`).join('');
+  document.getElementById('aiList').innerHTML = AI_TIPS.map(d=>`<li>${d[LANG]}</li>`).join('');
+}
+
+function setLang(lang){
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.getElementById('btnHi').setAttribute('aria-pressed', String(lang==='hi'));
+  document.getElementById('btnEn').setAttribute('aria-pressed', String(lang==='en'));
+  document.querySelectorAll('[data-str]').forEach(el=>{
+    const key = el.getAttribute('data-str');
+    if(STR[lang][key] !== undefined) el.textContent = STR[lang][key];
+  });
+  document.title = lang==='hi' ? 'पशु रोग जानकारी — सालारपुर, बदायूँ' : 'Animal Disease Information — Salarpur, Budaun';
+  render();
+}
+document.getElementById('btnHi').addEventListener('click', ()=>setLang('hi'));
+document.getElementById('btnEn').addEventListener('click', ()=>setLang('en'));
+
+setLang('hi');
+</script>
+</body>
+</html>
