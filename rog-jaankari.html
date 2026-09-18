@@ -33,6 +33,11 @@
   .hero h1{font-size:32px;font-weight:800;color:#fff;}
   .hero .sub{margin-top:8px;font-size:16px;color:#D6DCEA;max-width:60ch;}
 
+  .helpline-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .hcard{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:80px;background:rgba(255,255,255,.08);border:1.5px solid #E77E7E;border-radius:6px;padding:8px 12px;text-decoration:none;}
+  .hcard .hnum{font-size:16px;font-weight:800;color:#FF9B9B;}
+  .hcard .hlabel{font-size:10.5px;color:#EAEFF7;text-align:center;line-height:1.2;}
+
   main{padding-bottom:40px;}
   .section{padding:30px 0 6px;}
   .section h2{font-size:22px;font-weight:700;margin-bottom:6px;}
@@ -79,6 +84,11 @@
     </div>
     <h1 data-str="title">रोग जानकारी</h1>
     <p class="sub" data-str="heroSub">सामान्य बीमारियों के लक्षण, संबंधित सरकारी कार्यक्रम, और सामान्य स्वास्थ्य मानक — केवल जन-जागरूकता हेतु।</p>
+    <div class="helpline-strip">
+      <a class="hcard" href="tel:108"><span class="hnum">108</span><span class="hlabel" data-str="hAmb">एम्बुलेंस सेवा</span></a>
+      <a class="hcard" href="tel:104"><span class="hnum">104</span><span class="hlabel" data-str="hHealth">स्वास्थ्य सलाह हेल्पलाइन</span></a>
+      <a class="hcard" href="tel:14416"><span class="hnum">14416</span><span class="hlabel" data-str="hManas">टेली-मानस (मानसिक स्वास्थ्य)</span></a>
+    </div>
   </div>
 </header>
 
@@ -135,6 +145,7 @@ const STR = {
     footerFellow:'मुख्यमंत्री शोधार्थी (CM Fellow) — सालारपुर, बदायूँ',
     lastUpdated:'स्रोत — NTEP, NLEP, NCVBDC, NPCDCS, NMHP व राष्ट्रीय स्वास्थ्य मिशन के आधिकारिक पोर्टल। अंतिम समीक्षा — सितंबर 2026।',
     symptoms:'लक्षण', program:'सरकारी कार्यक्रम', doctor:'कब डॉक्टर के पास जाएं', normal:'सामान्य सीमा', consult:'⚠️ असामान्य मिलने पर डॉक्टर से मिलें, स्वयं इलाज न करें',
+    hAmb:'एम्बुलेंस सेवा', hHealth:'स्वास्थ्य सलाह हेल्पलाइन', hManas:'टेली-मानस (मानसिक स्वास्थ्य)',
   },
   en: {
     backLink:'Back to Yojana Sarathi', title:'Disease & Health Information',
@@ -149,6 +160,7 @@ const STR = {
     footerFellow:'CM Fellow — Salarpur Block, Budaun',
     lastUpdated:'Source — official portals of NTEP, NLEP, NCVBDC, NPCDCS, NMHP and the National Health Mission. Last reviewed — September 2026.',
     symptoms:'Symptoms', program:'Government programme', doctor:'When to see a doctor', normal:'Normal range', consult:'⚠️ If abnormal, see a doctor — do not self-treat',
+    hAmb:'Ambulance Service', hHealth:'Health Advisory Helpline', hManas:'Tele-MANAS (Mental Health)',
   }
 };
 

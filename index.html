@@ -268,7 +268,12 @@
   }
   .results-meta b{color:var(--ink);}
 
-  .active-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .active-filters{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;
+    position:sticky; top:var(--search-band-h, 68px); z-index:19;
+    background:var(--paper); padding:6px 0;
+  }
+  .active-filters:empty{position:static; padding:0; margin-top:0;}
   .filter-pill{
     display:inline-flex;align-items:center;gap:7px;
     background:var(--ink);color:#fff;
@@ -331,6 +336,13 @@
     display:inline-flex;align-items:center;gap:4px;
   }
   .scheme-card .row.link-row a svg{flex:none;}
+  .fig-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;}
+  .fig-chip{
+    display:inline-block;background:#FDF2E3;border:1px solid var(--marigold-deep);
+    border-radius:6px;padding:3px 9px;font-size:13.5px;font-weight:700;color:var(--ink);
+    white-space:nowrap;
+  }
+  .fig-note{display:block;margin-top:4px;font-size:13.5px;color:var(--marigold-deep);font-weight:600;}
   .scheme-card .cat-tag{
     display:inline-block;margin-top:12px;font-size:12.5px;color:var(--ink-soft);
     border-top:1px dashed var(--line);padding-top:10px;width:100%;
@@ -400,12 +412,12 @@
       <span><span data-str="district">जनपद</span> — <b>बदायूँ</b></span>
       <span><span data-str="division">मंडल</span> — <b>बरेली</b></span>
     </div>
-    <button type="button" id="emergencyToggle" class="emergency-toggle" aria-expanded="false" aria-controls="emergencyStrip">
+    <button type="button" id="emergencyToggle" class="emergency-toggle" aria-expanded="true" aria-controls="emergencyStrip">
       <span class="et-main">🚨 <span data-str="emergencyHeading">आपातकालीन नंबर</span></span>
-      <span class="et-hint" data-str="emergencyHint">(खोलने के लिए टैप/क्लिक करें)</span>
+      <span class="et-hint" data-str="emergencyHintCollapse">(छुपाने के लिए टैप/क्लिक करें)</span>
       <span class="et-chevron" aria-hidden="true">▾</span>
     </button>
-    <div id="emergencyStrip" hidden></div>
+    <div id="emergencyStrip"></div>
   </div>
 </header>
 
@@ -429,6 +441,10 @@
       <legend class="visually-hidden" data-str="step1Title">आप कौन हैं?</legend>
       <div class="chip-grid" id="personaGrid">
         <input type="radio" name="persona" id="persona-all" class="chip-input" value="" checked>
+        <label class="chip" for="persona-all" id="personaAllLabel">
+          <span class="icon" style="font-size:44px;">🗂️</span>
+          <span class="label" data-str="personaAll">सभी योजनाएं</span>
+        </label>
       </div>
     </fieldset>
     <button type="button" class="clear-persona" id="clearPersona" hidden data-str="clearPersona">सभी श्रेणियाँ फिर से दिखाएँ</button>
@@ -535,11 +551,11 @@ const STR = {
     title:'योजना सारथी', heroSub:'बताइए आप कौन हैं — हम आपको बताएँगे कि आपके लिए कौन-सी सरकारी योजना उपलब्ध है, पात्रता क्या है और कहाँ संपर्क करें।',
     block:'ब्लॉक', district:'जनपद', division:'मंडल',
     emergencyHeading:'आपातकालीन नंबर',
-    emergencyHint:'(खोलने के लिए टैप/क्लिक करें)',
+    emergencyHint:'(खोलने के लिए टैप/क्लिक करें)', emergencyHintCollapse:'(छुपाने के लिए टैप/क्लिक करें)',
     searchLabel:'योजना खोजें', searchPlaceholder:"योजना, बीमारी, फसल या ज़रूरत खोजें — जैसे 'गर्भवती', 'शौचालय', 'बीमा'",
     step1:'चरण 1', step1Title:'आप कौन हैं?', step1Help:'अपनी स्थिति चुनें — नीचे केवल उससे जुड़ी योजनाएं दिखेंगी। न चुनें तो सभी योजनाएं दिखेंगी।',
     step2:'चरण 2', step2Title:'विभाग अनुसार भी देख सकते हैं',
-    clearPersona:'सभी श्रेणियाँ फिर से दिखाएँ', allDept:'सभी विभाग',
+    clearPersona:'सभी श्रेणियाँ फिर से दिखाएँ', allDept:'सभी विभाग', personaAll:'सभी योजनाएं',
     resultsFound:'योजनाएं मिलीं', emptyTitle:'कोई योजना नहीं मिली',
     emptyBody:'खोज शब्द बदलकर देखें, या अपनी नज़दीकी आंगनवाड़ी / आशा कार्यकर्ता / जन सेवा केंद्र (CSC) से संपर्क करें।',
     benefitLabel:'क्या मिलता है', eligLabel:'पात्रता', contactLabel:'कहाँ संपर्क करें', officialSite:'आधिकारिक वेबसाइट',
@@ -564,11 +580,11 @@ const STR = {
     title:'Yojana Sarathi', heroSub:"Tell us who you are — we'll show which government schemes apply to you, the eligibility, and where to go.",
     block:'Block', district:'District', division:'Division',
     emergencyHeading:'Emergency numbers',
-    emergencyHint:'(tap/click to open)',
+    emergencyHint:'(tap/click to open)', emergencyHintCollapse:'(tap/click to hide)',
     searchLabel:'Search schemes', searchPlaceholder:"Search by scheme, health issue, crop or need — e.g. 'pregnant', 'toilet', 'insurance'",
     step1:'Step 1', step1Title:'Who are you?', step1Help:'Pick your situation — only related schemes will show below. Skip this to see everything.',
     step2:'Step 2', step2Title:'Or browse by department',
-    clearPersona:'Show all categories again', allDept:'All departments',
+    clearPersona:'Show all categories again', allDept:'All departments', personaAll:'All schemes',
     resultsFound:'schemes found', emptyTitle:'No schemes found',
     emptyBody:'Try different search words, or contact your nearest Anganwadi / ASHA worker / Common Service Centre (CSC).',
     benefitLabel:'What you get', eligLabel:'Eligibility', contactLabel:'Where to contact', officialSite:'Official website',
@@ -728,7 +744,10 @@ const SCHEMES = [
   // ---- AGRICULTURE / HORTICULTURE ----
   {cat:'agri', personas:['farmer'], level:0, url:'https://pmfby.gov.in/',
    name:{hi:'प्रधानमंत्री फसल बीमा योजना (PMFBY) — बदायूँ की अधिसूचित फसलें', en:'Pradhan Mantri Fasal Bima Yojana (PMFBY) — Budaun\u2019s notified crops'},
-   benefit:{hi:'बदायूँ में बीमाकर्ता इस वर्ष भी IFFCO-Tokio है। खरीफ 2026 (प्रीमियम किसान अंश 2%, अंतिम तिथि 31 जुलाई 2026): धान ₹76,300/हे॰, मक्का ₹53,100/हे॰, बाजरा ₹45,900/हे॰, उर्द ₹75,100/हे॰, तिल ₹12,200/हे॰ (बीमित राशि)। मौसम आधारित RWBCIS 2026 (प्रीमियम किसान अंश 5%, अंतिम तिथि 31 जुलाई 2026): मिर्च ₹50,000/हे॰ (प्रीमियम ₹2,500/हे॰)। रबी 2026-27 की दरें अभी जारी नहीं हुई हैं — जल्द अपडेट की जाएंगी।', en:'Insurer for Budaun continues to be IFFCO-Tokio this year too. Kharif 2026 (farmer premium 2%, deadline 31 July 2026): paddy ₹76,300/ha, maize ₹53,100/ha, pearl millet ₹45,900/ha, urad ₹75,100/ha, til ₹12,200/ha (sum insured). Weather-based RWBCIS 2026 (farmer premium 5%, deadline 31 July 2026): chilli ₹50,000/ha (premium ₹2,500/ha). Rabi 2026-27 rates have not been released yet — will be updated once available.'},
+   benefit:{
+     hi:'बदायूँ में बीमाकर्ता इस वर्ष भी <b>IFFCO-Tokio</b> है।<br><b>खरीफ 2026</b> — किसान प्रीमियम 2%, अंतिम तिथि <b>31 जुलाई 2026</b> (बीमित राशि):<div class="fig-chips"><span class="fig-chip">धान ₹76,300/हे॰</span><span class="fig-chip">मक्का ₹53,100/हे॰</span><span class="fig-chip">बाजरा ₹45,900/हे॰</span><span class="fig-chip">उर्द ₹75,100/हे॰</span><span class="fig-chip">तिल ₹12,200/हे॰</span></div><b>मौसम आधारित RWBCIS 2026</b> — किसान प्रीमियम 5%, अंतिम तिथि 31 जुलाई 2026:<div class="fig-chips"><span class="fig-chip">मिर्च ₹50,000/हे॰ (प्रीमियम ₹2,500/हे॰)</span></div><span class="fig-note">रबी 2026-27 की दरें अभी जारी नहीं हुई हैं — जल्द अपडेट की जाएंगी।</span>',
+     en:'Insurer for Budaun continues to be <b>IFFCO-Tokio</b> this year too.<br><b>Kharif 2026</b> — farmer premium 2%, deadline <b>31 July 2026</b> (sum insured):<div class="fig-chips"><span class="fig-chip">Paddy \u20b976,300/ha</span><span class="fig-chip">Maize \u20b953,100/ha</span><span class="fig-chip">Pearl millet \u20b945,900/ha</span><span class="fig-chip">Urad \u20b975,100/ha</span><span class="fig-chip">Til \u20b912,200/ha</span></div><b>Weather-based RWBCIS 2026</b> — farmer premium 5%, deadline 31 July 2026:<div class="fig-chips"><span class="fig-chip">Chilli \u20b950,000/ha (premium \u20b92,500/ha)</span></div><span class="fig-note">Rabi 2026-27 rates have not been released yet — will be updated once available.</span>'
+   },
    eligibility:{hi:'अधिसूचित फसल बोने वाले सभी किसान (ऋणी/गैर-ऋणी, बटाईदार सहित)। ऋणी किसान स्वतः शामिल हो जाते हैं जब तक कि बैंक को अंतिम तिथि से 7 दिन पूर्व अलग से मना न किया जाए।', en:'All farmers growing notified crops (loanee/non-loanee, including sharecroppers). Loanee farmers are auto-enrolled unless they opt out with the bank at least 7 days before the deadline.'},
    contact:{hi:'बैंक शाखा / CSC / टोल-फ्री 1800-889-6868, 1800-103-5490 / pmfby.gov.in', en:'Bank branch / CSC / Toll-free 1800-889-6868, 1800-103-5490 / pmfby.gov.in'},
    terms:{hi:'⚠️ दावा अस्वीकृत होने के सामान्य कारण — (1) नुकसान की सूचना घटना के 72 घंटे के भीतर देना अनिवार्य है, न देने पर दावा रद्द हो सकता है। (2) रिकॉर्ड व खेत में अलग-अलग फसल होने पर सत्यापन में दावा अस्वीकृत होता है — बुआई प्रमाणपत्र सही भरें। (3) आधार, बैंक खाता व भू-अभिलेख में नाम की स्पेलिंग एक समान होनी चाहिए। (4) धान की फसल में जलभराव व्यक्तिगत दावे के अंतर्गत कवर नहीं है। (5) सामान्य उपज-कमी का दावा पूरे ग्राम पंचायत के औसत पर आधारित है, केवल अपने खेत पर नहीं।', en:'⚠️ Common reasons claims are rejected — (1) Loss must be reported within 72 hours of the event, or the claim can be voided. (2) A mismatch between the crop on record and the crop actually in the field leads to rejection at verification — fill the sowing certificate accurately. (3) Name spelling must match exactly across Aadhaar, bank account, and land records. (4) Waterlogging in paddy is not covered under individual/localised claims. (5) General yield-shortfall claims are based on the whole Gram Panchayat\u2019s average, not just your own field.'},
@@ -1071,14 +1090,23 @@ function buildCatRow(){
     catRow.appendChild(input); catRow.appendChild(label);
   });
   document.querySelectorAll('input[name="category"]').forEach(inp=>{
-    inp.addEventListener('change', ()=>{ activeCat = inp.value; render(); });
+    inp.addEventListener('change', ()=>{
+      activeCat = inp.value;
+      render();
+      document.getElementById('resultsSection').scrollIntoView({behavior:'smooth', block:'start'});
+    });
   });
 }
 buildCatRow();
 
+let searchScrollTimer = null;
 document.getElementById('searchInput').addEventListener('input', (e)=>{
   query = e.target.value.trim();
   render();
+  clearTimeout(searchScrollTimer);
+  searchScrollTimer = setTimeout(()=>{
+    document.getElementById('resultsSection').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 500);
 });
 
 document.getElementById('clearPersona').addEventListener('click', ()=>{
@@ -1104,13 +1132,17 @@ function setLang(lang){
   });
   document.title = lang==='hi' ? 'योजना सारथी — सालारपुर, बदायूँ' : 'Yojana Sarathi — Salarpur, Budaun';
 
-  // rebuild persona labels
-  document.querySelectorAll('#personaGrid label.chip').forEach((label,i)=>{
+  // rebuild persona labels (skip the static "All schemes" chip, translated above via data-str)
+  document.querySelectorAll('#personaGrid label.chip:not(#personaAllLabel)').forEach((label,i)=>{
     label.querySelector('.label').textContent = PERSONAS[i][lang];
   });
   buildCatRow();
   renderEmergency();
   render();
+  updateSearchBandHeight();
+  const etBtn = document.getElementById('emergencyToggle');
+  const etHint = etBtn.querySelector('.et-hint');
+  etHint.textContent = etBtn.getAttribute('aria-expanded') === 'true' ? STR[lang].emergencyHintCollapse : STR[lang].emergencyHint;
 }
 document.getElementById('btnHi').addEventListener('click', ()=>setLang('hi'));
 document.getElementById('btnEn').addEventListener('click', ()=>setLang('en'));
@@ -1262,7 +1294,8 @@ const VoiceModule = (() => {
     if (currentBtn) { currentBtn.dataset.speaking = 'false'; currentBtn.querySelector('.vlabel').textContent = STR[LANG].listen; }
     if (wasSpeaking && currentBtn === btn) { currentBtn = null; return; } // tap again to stop
     const s_ = STR[lang];
-    const text = [scheme.name[lang], s_.benefitLabel+': '+scheme.benefit[lang], s_.eligLabel+': '+scheme.eligibility[lang], s_.contactLabel+': '+scheme.contact[lang]].join('. ');
+    const strip = (str) => String(str).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const text = [strip(scheme.name[lang]), s_.benefitLabel+': '+strip(scheme.benefit[lang]), s_.eligLabel+': '+strip(scheme.eligibility[lang]), s_.contactLabel+': '+strip(scheme.contact[lang])].join('. ');
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
     const v = pickVoice(lang);
@@ -1304,13 +1337,23 @@ function renderEmergency(){
 document.getElementById('emergencyToggle').addEventListener('click', ()=>{
   const btn = document.getElementById('emergencyToggle');
   const strip = document.getElementById('emergencyStrip');
+  const hint = btn.querySelector('.et-hint');
   const isOpen = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!isOpen));
   strip.hidden = isOpen;
+  hint.textContent = isOpen ? STR[LANG].emergencyHint : STR[LANG].emergencyHintCollapse;
 });
 renderEmergency();
 
 render();
+
+function updateSearchBandHeight(){
+  const band = document.querySelector('.search-band');
+  if(band) document.documentElement.style.setProperty('--search-band-h', band.offsetHeight + 'px');
+}
+updateSearchBandHeight();
+window.addEventListener('resize', updateSearchBandHeight);
+
 </script>
 </body>
 </html>
